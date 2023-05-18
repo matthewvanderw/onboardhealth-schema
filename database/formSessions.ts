@@ -4,11 +4,10 @@ import {
 	varchar,
 	json,
 	uniqueIndex,
-	mysqlEnum,
-	alias
+	mysqlEnum
 } from 'drizzle-orm/mysql-core'
 
-const table = mysqlTable(
+export const formSessions = mysqlTable(
 	'FormSessions',
 	{
 		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
@@ -32,5 +31,3 @@ const table = mysqlTable(
 		)
 	})
 )
-
-export const formSessions = alias(table, 'formSessions')

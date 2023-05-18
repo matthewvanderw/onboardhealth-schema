@@ -1,8 +1,6 @@
-import { alias, mysqlTable, text, varchar } from 'drizzle-orm/mysql-core'
+import { mysqlTable, text, varchar } from 'drizzle-orm/mysql-core'
 
-const table = mysqlTable('Provinces', {
+export const provinces = mysqlTable('Provinces', {
 	province: varchar('Province', { length: 8 }).primaryKey(),
 	description: text('Description').notNull()
 })
-
-export const provinces = alias(table, 'provinces')

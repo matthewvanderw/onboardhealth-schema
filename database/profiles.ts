@@ -1,6 +1,6 @@
-import { mysqlTable, text, timestamp, varchar, uniqueIndex, alias } from 'drizzle-orm/mysql-core'
+import { mysqlTable, text, timestamp, varchar, uniqueIndex } from 'drizzle-orm/mysql-core'
 
-const table = mysqlTable(
+export const profiles = mysqlTable(
 	'Profiles',
 	{
 		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
@@ -17,5 +17,3 @@ const table = mysqlTable(
 		authIdIndex: uniqueIndex('AuthIdIndex').on(profiles.authId)
 	})
 )
-
-export const profiles = alias(table, 'profiles')

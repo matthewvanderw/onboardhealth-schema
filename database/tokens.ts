@@ -4,11 +4,10 @@ import {
 	varchar,
 	mysqlEnum,
 	json,
-	uniqueIndex,
-	alias
+	uniqueIndex
 } from 'drizzle-orm/mysql-core'
 
-const table = mysqlTable(
+export const tokens = mysqlTable(
 	'Tokens',
 	{
 		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
@@ -18,7 +17,7 @@ const table = mysqlTable(
 		status: mysqlEnum('Status', ['created', 'revoked', 'expired']).default('created').notNull(),
 		issuedAt: timestamp('IssuedAt').defaultNow().notNull()
 	},
-	(tokens) => ({ profileIdIndex: uniqueIndex('ProfileIdIndex').on(tokens.profileId) })
+	(tokens) => ({
+		profileIdIndex: uniqueIndex('ProfileIdIndex').on(tokens.profileId)
+	})
 )
-
-export const tokens = alias(table, 'tokens')

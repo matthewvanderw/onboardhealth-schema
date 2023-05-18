@@ -1,6 +1,6 @@
-import { mysqlTable, mysqlEnum, timestamp, varchar, alias } from 'drizzle-orm/mysql-core'
+import { mysqlTable, mysqlEnum, timestamp, varchar } from 'drizzle-orm/mysql-core'
 
-const table = mysqlTable('Auth', {
+export const auth = mysqlTable('Auth', {
 	id: varchar('Id', { length: 256 }).primaryKey().notNull(),
 
 	type: mysqlEnum('Type', ['user', 'programmatic']).default('user').notNull(),
@@ -9,5 +9,3 @@ const table = mysqlTable('Auth', {
 	createdAt: timestamp('CreatedAt').defaultNow().notNull(),
 	lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
 })
-
-export const auth = alias(table, 'auth')

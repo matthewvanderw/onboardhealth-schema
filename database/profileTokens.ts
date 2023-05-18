@@ -1,6 +1,6 @@
-import { alias, mysqlTable, primaryKey, varchar } from 'drizzle-orm/mysql-core'
+import { mysqlTable, primaryKey, varchar } from 'drizzle-orm/mysql-core'
 
-const table = mysqlTable(
+export const profileTokens = mysqlTable(
 	'ProfileTokens',
 	{
 		profileId: varchar('ProfileId', { length: 256 }).notNull(),
@@ -10,5 +10,3 @@ const table = mysqlTable(
 		profileId_tokenId: primaryKey(profileTokens.profileId, profileTokens.tokenId)
 	})
 )
-
-export const profileTokens = alias(table, 'profileTokens')

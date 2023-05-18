@@ -1,7 +1,7 @@
 import type { FormItem } from '../models/formItem.model'
-import { mysqlTable, timestamp, varchar, json, index, alias } from 'drizzle-orm/mysql-core'
+import { mysqlTable, timestamp, varchar, json, index } from 'drizzle-orm/mysql-core'
 
-const table = mysqlTable(
+export const formSteps = mysqlTable(
 	'FormSteps',
 	{
 		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
@@ -18,5 +18,3 @@ const table = mysqlTable(
 		nextStepIdIndex: index('NextStepIdIndex').on(formSteps.nextStepId)
 	})
 )
-
-export const formSteps = alias(table, 'formSteps')
