@@ -1,0 +1,1 @@
+ALTER TABLE `Genders` RENAME COLUMN `description` TO `Description`;

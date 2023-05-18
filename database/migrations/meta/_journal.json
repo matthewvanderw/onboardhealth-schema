@@ -15,6 +15,34 @@
       "when": 1684327403070,
       "tag": "0001_breezy_dorian_gray",
       "breakpoints": false
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1684441453580,
+      "tag": "0002_misty_fantastic_four",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1684441467334,
+      "tag": "0003_volatile_captain_flint",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1684442092822,
+      "tag": "0004_workable_dexter_bennett",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1684443803049,
+      "tag": "0005_outgoing_rage",
+      "breakpoints": true
     }
   ]
 }

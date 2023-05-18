@@ -1,0 +1,585 @@
+{
+  "version": "5",
+  "dialect": "mysql",
+  "id": "ea5e63fe-d2ac-4da4-9259-f8b517330130",
+  "prevId": "97bec41b-c616-4202-8d83-fd7116f178d9",
+  "tables": {
+    "Auth": {
+      "name": "Auth",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Type": {
+          "name": "Type",
+          "type": "enum('user','programmatic')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'user'"
+        },
+        "Hash": {
+          "name": "Hash",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "BankAccountTypes": {
+      "name": "BankAccountTypes",
+      "columns": {
+        "Type": {
+          "name": "Type",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Banks": {
+      "name": "Banks",
+      "columns": {
+        "Bank": {
+          "name": "Bank",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "FormSessions": {
+      "name": "FormSessions",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Uid": {
+          "name": "Uid",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "FormId": {
+          "name": "FormId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "StartingStepId": {
+          "name": "StartingStepId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "StoredValues": {
+          "name": "StoredValues",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "enum('created','active','complete','revoked')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'created'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true
+        }
+      },
+      "indexes": {
+        "UidAndFormIdUniqueIndex": {
+          "name": "UidAndFormIdUniqueIndex",
+          "columns": [
+            "Uid",
+            "FormId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "FormSteps": {
+      "name": "FormSteps",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "FormId": {
+          "name": "FormId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Template": {
+          "name": "Template",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "NextStepId": {
+          "name": "NextStepId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true
+        }
+      },
+      "indexes": {
+        "FormIdIndex": {
+          "name": "FormIdIndex",
+          "columns": [
+            "FormId"
+          ],
+          "isUnique": false
+        },
+        "NextStepIdIndex": {
+          "name": "NextStepIdIndex",
+          "columns": [
+            "NextStepId"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Forms": {
+      "name": "Forms",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "DefaultStartingStepId": {
+          "name": "DefaultStartingStepId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Theme": {
+          "name": "Theme",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Genders": {
+      "name": "Genders",
+      "columns": {
+        "Gender": {
+          "name": "Gender",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "IdentityTypes": {
+      "name": "IdentityTypes",
+      "columns": {
+        "IdentityType": {
+          "name": "IdentityType",
+          "type": "varchar(16)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "MaritalStatus": {
+      "name": "MaritalStatus",
+      "columns": {
+        "Status": {
+          "name": "Status",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Profiles": {
+      "name": "Profiles",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Organisation": {
+          "name": "Organisation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "AuthId": {
+          "name": "AuthId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "onUpdate": true
+        }
+      },
+      "indexes": {
+        "AuthIdIndex": {
+          "name": "AuthIdIndex",
+          "columns": [
+            "AuthId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Provinces": {
+      "name": "Provinces",
+      "columns": {
+        "Province": {
+          "name": "Province",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Titles": {
+      "name": "Titles",
+      "columns": {
+        "Title": {
+          "name": "Title",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Filter": {
+          "name": "Filter",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Tokens": {
+      "name": "Tokens",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ProfileId": {
+          "name": "ProfileId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Token": {
+          "name": "Token",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "enum('created','revoked','expired')",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'created'"
+        },
+        "IssuedAt": {
+          "name": "IssuedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(now())"
+        }
+      },
+      "indexes": {
+        "ProfileIdIndex": {
+          "name": "ProfileIdIndex",
+          "columns": [
+            "ProfileId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    }
+  },
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {
+      "\"auth\"": "\"Auth\"",
+      "\"bankAccountTypes\"": "\"BankAccountTypes\"",
+      "\"banks\"": "\"Banks\"",
+      "\"formSessions\"": "\"FormSessions\"",
+      "\"formSteps\"": "\"FormSteps\"",
+      "\"forms\"": "\"Forms\"",
+      "\"genders\"": "\"Genders\"",
+      "\"identityTypes\"": "\"IdentityTypes\"",
+      "\"maritalStatus\"": "\"MaritalStatus\"",
+      "\"profiles\"": "\"Profiles\"",
+      "\"provinces\"": "\"Provinces\"",
+      "\"titles\"": "\"Titles\"",
+      "\"tokens\"": "\"Tokens\""
+    },
+    "columns": {
+      "\"Auth\".\"id\"": "\"Auth\".\"Id\"",
+      "\"Auth\".\"type\"": "\"Auth\".\"Type\"",
+      "\"Auth\".\"hash\"": "\"Auth\".\"Hash\"",
+      "\"Auth\".\"createdAt\"": "\"Auth\".\"CreatedAt\"",
+      "\"Auth\".\"lastUpdatedAt\"": "\"Auth\".\"LastUpdatedAt\"",
+      "\"BankAccountTypes\".\"type\"": "\"BankAccountTypes\".\"Type\"",
+      "\"BankAccountTypes\".\"description\"": "\"BankAccountTypes\".\"Description\"",
+      "\"Banks\".\"bank\"": "\"Banks\".\"Bank\"",
+      "\"Banks\".\"description\"": "\"Banks\".\"Description\"",
+      "\"FormSessions\".\"id\"": "\"FormSessions\".\"Id\"",
+      "\"FormSessions\".\"uid\"": "\"FormSessions\".\"Uid\"",
+      "\"FormSessions\".\"formId\"": "\"FormSessions\".\"FormId\"",
+      "\"FormSessions\".\"startingStepId\"": "\"FormSessions\".\"StartingStepId\"",
+      "\"FormSessions\".\"storedValues\"": "\"FormSessions\".\"StoredValues\"",
+      "\"FormSessions\".\"status\"": "\"FormSessions\".\"Status\"",
+      "\"FormSessions\".\"createdAt\"": "\"FormSessions\".\"CreatedAt\"",
+      "\"FormSessions\".\"lastUpdatedAt\"": "\"FormSessions\".\"LastUpdatedAt\"",
+      "\"FormSteps\".\"id\"": "\"FormSteps\".\"Id\"",
+      "\"FormSteps\".\"formId\"": "\"FormSteps\".\"FormId\"",
+      "\"FormSteps\".\"template\"": "\"FormSteps\".\"Template\"",
+      "\"FormSteps\".\"nextStepId\"": "\"FormSteps\".\"NextStepId\"",
+      "\"FormSteps\".\"createdAt\"": "\"FormSteps\".\"CreatedAt\"",
+      "\"FormSteps\".\"lastUpdatedAt\"": "\"FormSteps\".\"LastUpdatedAt\"",
+      "\"Forms\".\"id\"": "\"Forms\".\"Id\"",
+      "\"Forms\".\"defaultStartingStepId\"": "\"Forms\".\"DefaultStartingStepId\"",
+      "\"Forms\".\"createdAt\"": "\"Forms\".\"CreatedAt\"",
+      "\"Forms\".\"lastUpdatedAt\"": "\"Forms\".\"LastUpdatedAt\"",
+      "\"Genders\".\"gender\"": "\"Genders\".\"Gender\"",
+      "\"IdentityTypes\".\"identityType\"": "\"IdentityTypes\".\"IdentityType\"",
+      "\"IdentityTypes\".\"description\"": "\"IdentityTypes\".\"Description\"",
+      "\"MaritalStatus\".\"status\"": "\"MaritalStatus\".\"Status\"",
+      "\"MaritalStatus\".\"description\"": "\"MaritalStatus\".\"Description\"",
+      "\"Profiles\".\"id\"": "\"Profiles\".\"Id\"",
+      "\"Profiles\".\"organisation\"": "\"Profiles\".\"Organisation\"",
+      "\"Profiles\".\"description\"": "\"Profiles\".\"Description\"",
+      "\"Profiles\".\"authId\"": "\"Profiles\".\"AuthId\"",
+      "\"Profiles\".\"createdAt\"": "\"Profiles\".\"CreatedAt\"",
+      "\"Profiles\".\"lastUpdatedAt\"": "\"Profiles\".\"LastUpdatedAt\"",
+      "\"Provinces\".\"province\"": "\"Provinces\".\"Province\"",
+      "\"Provinces\".\"description\"": "\"Provinces\".\"Description\"",
+      "\"Titles\".\"title\"": "\"Titles\".\"Title\"",
+      "\"Titles\".\"gender\"": "\"Titles\".\"Filter\"",
+      "\"Titles\".\"description\"": "\"Titles\".\"Description\"",
+      "\"Tokens\".\"id\"": "\"Tokens\".\"Id\"",
+      "\"Tokens\".\"profileId\"": "\"Tokens\".\"ProfileId\"",
+      "\"Tokens\".\"token\"": "\"Tokens\".\"Token\"",
+      "\"Tokens\".\"status\"": "\"Tokens\".\"Status\"",
+      "\"Tokens\".\"issuedAt\"": "\"Tokens\".\"IssuedAt\""
+    }
+  }
+}
