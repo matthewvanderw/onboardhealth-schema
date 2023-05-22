@@ -1,10 +1,11 @@
-export type Sections = BasicSectionWithUnderline
+export type Sections = BasicSection
 
 type Section = {
 	type: 'section'
 }
 
-type BasicSectionWithUnderline = Section & {
-	sectionType: 'basic-with-underline'
-	title?: string
+type BasicSection = Section & {
+	sectionType: 'basic-section'
+	header?: string
+	subHeader?: string
 }

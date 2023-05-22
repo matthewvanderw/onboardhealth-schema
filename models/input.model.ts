@@ -2,34 +2,39 @@ export type Inputs = BasicInput | BasicSelect | BasicCheckbox
 
 type Input = {
 	type: 'input'
-
 	name: string
-	label?: string
-	required: boolean
-	disabled?: boolean
 
+	label?: string
+	placeholder?: string
+	disabled?: boolean
+	required?: boolean
 	query?: string
 	handler?: string
 	filter?: string
+
+	description?: {
+		beforeInput: string
+		afterInput: string
+	}
 
 	value: string | null
 }
 
 export type BasicInput = Input & {
-	inputType: 'basic-input'
-	fieldType: 'text' | 'email' | 'tel' | 'date' | 'password' | 'search' | 'number'
+	inputType: 'text' | 'email' | 'tel' | 'date' | 'password' | 'search' | 'number'
 }
 
 export type BasicCheckbox = Input & {
-	inputType: 'basic-checkbox'
+	inputType: 'checkbox'
 }
 
 export type BasicSelect = Input & {
-	inputType: 'basic-select'
+	inputType: 'select'
 	options: Option[]
 }
 
 export type Option = {
 	label: string
-	value: unknown
+	filter: string
+	value: string
 }

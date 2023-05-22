@@ -6,7 +6,9 @@ export const sessionStepData = mysqlTable(
 		sessionId: varchar('SessionId', { length: 256 }).notNull(),
 		stepId: varchar('StepId', { length: 256 }).notNull(),
 
-		storedValues: json('StoredValues').$type<Record<string, string>[]>(),
+		storedValues: json('StoredValues').$type<
+			Record<string, FormDataEntryValue> | Record<string, FormDataEntryValue>[]
+		>(),
 
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
 		lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
