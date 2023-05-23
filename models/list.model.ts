@@ -1,24 +1,25 @@
 export type Lists = UserList
 
 type List = {
-	type: 'card'
+	type: 'list'
 	placeholder: string
 }
 
 export type UserList = List & {
 	listType: 'user-list'
-	listAction: {
-		stepId: string
-		label: string
-	}
 	query: {
 		name: string
 		props: {
 			stepId: string
 		}
 	}
-	results: {
-		id: string
+
+	listAction: {
+		stepId: string
+		label: string
+	}
+	results?: {
+		id: number
 		name: string
 		dateOfBirth: string
 	}[]

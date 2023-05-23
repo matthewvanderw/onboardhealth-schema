@@ -1,4 +1,5 @@
 import { mysqlTable, timestamp, varchar, json, primaryKey } from 'drizzle-orm/mysql-core'
+import type { StoredValues } from '../models/formBuilder.model'
 
 export const sessionStepData = mysqlTable(
 	'SessionStepData',

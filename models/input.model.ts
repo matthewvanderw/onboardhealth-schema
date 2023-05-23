@@ -5,19 +5,20 @@ type Input = {
 	name: string
 
 	label?: string
-	placeholder?: string
-	disabled?: boolean
-	required?: boolean
-	query?: string
-	handler?: string
-	filter?: string
-
 	description?: {
-		beforeInput: string
-		afterInput: string
+		beforeInput?: string
+		afterInput?: string
 	}
+	placeholder?: string
 
-	value: string | null
+	required?: boolean
+	disabled?: boolean
+
+	handler?: Handlers
+	validators?: Validators
+	filter?: Filters
+
+	value?: string
 }
 
 export type BasicInput = Input & {
@@ -30,19 +31,27 @@ export type BasicCheckbox = Input & {
 
 export type BasicSelect = Input & {
 	inputType: 'select'
-	optionsLookup:
-		| 'genders'
-		| 'identity-types'
-		| 'martial-statuses'
-		| 'provinces'
-		| 'bank-names'
-		| 'account-types'
-		| 'relationships'
+	optionsLookup: string
 	options: Option[]
 }
 
 export type Option = {
 	label: string
-	filter?: string
+	filterValue?: string
 	value: string
 }
+
+type Validators = {
+	validator: string
+	props: Record<string, string | number>
+}[]
+
+type Filters = {
+	filter: string
+	props: Record<string, string | number>
+}[]
+
+type Handlers = {
+	handler: string
+	props: Record<string, string | number>
+}[]

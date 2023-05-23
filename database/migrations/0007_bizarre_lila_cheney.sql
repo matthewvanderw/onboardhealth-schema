@@ -1,0 +1,1 @@
+ALTER TABLE `FormSteps` ADD `Action` enum('default','push') DEFAULT 'default';
