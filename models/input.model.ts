@@ -30,11 +30,19 @@ export type BasicCheckbox = Input & {
 
 export type BasicSelect = Input & {
 	inputType: 'select'
+	optionsLookup:
+		| 'genders'
+		| 'identity-types'
+		| 'martial-statuses'
+		| 'provinces'
+		| 'bank-names'
+		| 'account-types'
+		| 'relationships'
 	options: Option[]
 }
 
 export type Option = {
 	label: string
-	filter: string
+	filter?: string
 	value: string
 }

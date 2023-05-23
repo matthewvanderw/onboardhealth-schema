@@ -43,6 +43,13 @@
       "when": 1684443803049,
       "tag": "0005_outgoing_rage",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1684792010011,
+      "tag": "0006_loving_vector",
+      "breakpoints": true
     }
   ]
 }
