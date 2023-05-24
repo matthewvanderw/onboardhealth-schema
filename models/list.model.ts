@@ -11,6 +11,9 @@ export type UserList = List & {
 		name: string
 		props: {
 			stepId: string
+			mappings: {
+				[Property in keyof Results]: string
+			}
 		}
 	}
 
@@ -18,9 +21,12 @@ export type UserList = List & {
 		stepId: string
 		label: string
 	}
-	results?: {
-		id: number
-		name: string
-		dateOfBirth: string
-	}[]
+	results?: Results[]
+}
+
+type Results = {
+	id: string
+	firstNames: string
+	lastName: string
+	dateOfBirth: string
 }
