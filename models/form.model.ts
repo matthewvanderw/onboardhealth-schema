@@ -14,3 +14,24 @@ export type Options = {
 		next?: { label: string; path: string }
 	}
 }
+
+export type GlobalOptions = {
+	contribution?: {
+		mainMember?: {
+			lookupStepId: string
+			label: string
+		}
+		dependants?: {
+			lookupStepId: string
+			label: string
+		}
+		total: {
+			label: string
+		}
+	}
+}
+
+export type Theme = {
+	fontFamily: string
+	fontUrl: string
+}

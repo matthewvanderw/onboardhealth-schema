@@ -27,6 +27,7 @@ export type BasicInput = Input & {
 
 export type BasicCheckbox = Input & {
 	inputType: 'checkbox'
+	markdown?: string
 }
 
 export type BasicSelect = Input & {

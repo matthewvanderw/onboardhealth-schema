@@ -1,4 +1,4 @@
-import type { Theme } from '../models/master.model'
+import type { GlobalOptions, Theme } from '../models/form.model'
 import { json, mysqlTable, timestamp, varchar } from 'drizzle-orm/mysql-core'
 
 export const forms = mysqlTable('Forms', {
@@ -8,6 +8,7 @@ export const forms = mysqlTable('Forms', {
 		length: 256
 	}).notNull(),
 	theme: json('Theme').$type<Theme>(),
+	globalOptions: json('GlobalOptions').$type<GlobalOptions>(),
 
 	createdAt: timestamp('CreatedAt').defaultNow().notNull(),
 	lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()

@@ -16,7 +16,7 @@ export const formSessions = mysqlTable(
 		formId: varchar('FormId', { length: 256 }).notNull(),
 		startingStepId: varchar('StartingStepId', { length: 256 }).notNull(),
 
-		storedValues: json('StoredValues').$type<Record<string, string>[]>(),
+		storedValues: json('StoredValues').$type<Record<string, string>>(),
 
 		status: mysqlEnum('Status', ['created', 'active', 'complete', 'revoked'])
 			.default('created')
