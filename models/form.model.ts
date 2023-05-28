@@ -2,7 +2,7 @@ import type { FormItem } from './formItem.model'
 
 export type FormResponse = {
 	previous: boolean
-	next: boolean
+	next: true | Record<string, string | FormDataEntryValue>
 	form: FormItem[]
 	options?: Options
 }
@@ -13,6 +13,7 @@ export type Options = {
 		previous?: { label: string; path: string }
 		next?: { label: string; path: string }
 	}
+	returnProps?: Record<string, string>
 }
 
 export type GlobalOptions = {
