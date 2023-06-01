@@ -1,17 +1,17 @@
-import { mysqlTable, text, timestamp, varchar, uniqueIndex } from 'drizzle-orm/mysql-core'
+import { pgTable, text, timestamp, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
-export const profiles = mysqlTable(
+export const profiles = pgTable(
 	'Profiles',
 	{
-		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
+		id: uuid('Id').defaultRandom().primaryKey(),
 
 		organisation: text('Organisation').notNull(),
 		description: text('Description'),
 
-		authId: varchar('AuthId', { length: 256 }).notNull(),
+		authId: uuid('AuthId').notNull(),
 
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
-		lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
+		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull()
 	},
 	(profiles) => ({
 		authIdIndex: uniqueIndex('AuthIdIndex').on(profiles.authId)

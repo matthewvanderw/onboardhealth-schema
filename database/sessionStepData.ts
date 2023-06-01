@@ -1,6 +1,6 @@
-import { mysqlTable, timestamp, varchar, json, primaryKey } from 'drizzle-orm/mysql-core'
+import { pgTable, timestamp, varchar, json, primaryKey } from 'drizzle-orm/pg-core'
 
-export const sessionStepData = mysqlTable(
+export const sessionStepData = pgTable(
 	'SessionStepData',
 	{
 		sessionId: varchar('SessionId', { length: 256 }).notNull(),
@@ -11,7 +11,7 @@ export const sessionStepData = mysqlTable(
 		>(),
 
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
-		lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
+		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull()
 	},
 	(SessionStepData) => ({
 		sessionId_stepId: primaryKey(SessionStepData.sessionId, SessionStepData.stepId)

@@ -1,20 +1,15 @@
-import {
-	mysqlTable,
-	timestamp,
-	varchar,
-	mysqlEnum,
-	json,
-	uniqueIndex
-} from 'drizzle-orm/mysql-core'
+import { pgTable, timestamp, varchar, pgEnum, json, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
 
-export const tokens = mysqlTable(
+const statusEnum = pgEnum('Status', ['created', 'revoked', 'expired'])
+
+export const tokens = pgTable(
 	'Tokens',
 	{
-		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
+		id: uuid('Id').defaultRandom().primaryKey(),
 		profileId: varchar('ProfileId', { length: 256 }).notNull(),
 
 		token: json('Token').notNull(),
-		status: mysqlEnum('Status', ['created', 'revoked', 'expired']).default('created').notNull(),
+		status: statusEnum('Status').default('created').notNull(),
 		issuedAt: timestamp('IssuedAt').defaultNow().notNull()
 	},
 	(tokens) => ({

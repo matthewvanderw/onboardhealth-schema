@@ -1,10 +1,10 @@
-import { mysqlTable, primaryKey, varchar } from 'drizzle-orm/mysql-core'
+import { pgTable, primaryKey, uuid, varchar } from 'drizzle-orm/pg-core'
 
-export const profileTokens = mysqlTable(
+export const profileTokens = pgTable(
 	'ProfileTokens',
 	{
-		profileId: varchar('ProfileId', { length: 256 }).notNull(),
-		tokenId: varchar('TokenId', { length: 256 }).notNull()
+		profileId: uuid('ProfileId').notNull(),
+		tokenId: uuid('TokenId').notNull()
 	},
 	(profileTokens) => ({
 		profileId_tokenId: primaryKey(profileTokens.profileId, profileTokens.tokenId)
