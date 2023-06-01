@@ -21,6 +21,12 @@ type Input = {
 	value?: string
 }
 
+type InputState = {
+	touched: boolean
+	// dirty: boolean
+	validity: { valid: true } | { valid: false; message: string }
+}
+
 export type BasicInput = Input & {
 	inputType: 'text' | 'email' | 'tel' | 'date' | 'password' | 'search' | 'number'
 }
@@ -49,17 +55,17 @@ export type Option = {
 	value: string
 }
 
-type Validators = {
+export type Validators = {
 	validator: string
 	props: Record<string, string | number>
 }[]
 
-type Filters = {
+export type Filters = {
 	filter: string
 	props: Record<string, string | number>
 }[]
 
-type Handlers = {
+export type Handlers = {
 	handler: string
 	props: Record<string, string | number>
 }[]
