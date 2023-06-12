@@ -1,4 +1,4 @@
-import { pgTable, timestamp, varchar, json, primaryKey } from 'drizzle-orm/pg-core'
+import { pgTable, timestamp, varchar, primaryKey, jsonb } from 'drizzle-orm/pg-core'
 
 export const sessionStepData = pgTable(
 	'SessionStepData',
@@ -6,7 +6,7 @@ export const sessionStepData = pgTable(
 		sessionId: varchar('SessionId', { length: 256 }).notNull(),
 		stepId: varchar('StepId', { length: 256 }).notNull(),
 
-		storedValues: json('StoredValues').$type<
+		storedValues: jsonb('StoredValues').$type<
 			Record<string, FormDataEntryValue> | Record<string, FormDataEntryValue>[]
 		>(),
 

@@ -1,6 +1,6 @@
-import { pgTable, timestamp, varchar, pgEnum, json, uniqueIndex, uuid } from 'drizzle-orm/pg-core'
+import { pgTable, timestamp, varchar, pgEnum, uniqueIndex, uuid, jsonb } from 'drizzle-orm/pg-core'
 
-const statusEnum = pgEnum('Status', ['created', 'revoked', 'expired'])
+const statusEnum = pgEnum('Status', ['created', 'active', 'complete', 'revoked'])
 
 export const tokens = pgTable(
 	'Tokens',
@@ -8,7 +8,7 @@ export const tokens = pgTable(
 		id: uuid('Id').defaultRandom().primaryKey(),
 		profileId: varchar('ProfileId', { length: 256 }).notNull(),
 
-		token: json('Token').notNull(),
+		token: jsonb('Token').notNull(),
 		status: statusEnum('Status').default('created').notNull(),
 		issuedAt: timestamp('IssuedAt').defaultNow().notNull()
 	},

@@ -1,6 +1,6 @@
 import { pgTable, timestamp, varchar, pgEnum, uniqueIndex, date, uuid } from 'drizzle-orm/pg-core'
 
-const statusEnum = pgEnum('Status', ['created', 'revoked', 'expired'])
+const statusEnum = pgEnum('Status', ['created', 'active', 'complete', 'revoked'])
 
 export const members = pgTable(
 	'Members',

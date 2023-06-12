@@ -1,4 +1,4 @@
-import { pgTable, timestamp, varchar, json, uniqueIndex, pgEnum, uuid } from 'drizzle-orm/pg-core'
+import { pgTable, timestamp, varchar, uniqueIndex, pgEnum, uuid, jsonb } from 'drizzle-orm/pg-core'
 
 const statusEnum = pgEnum('Status', ['created', 'active', 'complete', 'revoked'])
 
@@ -9,9 +9,9 @@ export const formSessions = pgTable(
 
 		uid: varchar('Uid', { length: 256 }).notNull(),
 		formId: varchar('FormId', { length: 256 }).notNull(),
-		currentStepId: varchar('CurrentStepId', { length: 256 }).notNull(),
+		currentStepId: uuid('CurrentStepId').notNull(),
 
-		storedValues: json('StoredValues').$type<Record<string, string>>(),
+		storedValues: jsonb('StoredValues').$type<Record<string, string>>(),
 
 		status: statusEnum('Status').default('created').notNull(),
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),

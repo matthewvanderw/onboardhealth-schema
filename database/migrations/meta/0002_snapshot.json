@@ -1,0 +1,761 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "id": "b1ec6613-8664-4c8b-a32d-210e178f0c69",
+  "prevId": "871c9b6f-1e9e-47cf-96f9-5b184c6f1f37",
+  "tables": {
+    "Auth": {
+      "name": "Auth",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "Type": {
+          "name": "Type",
+          "type": "Type",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'user'"
+        },
+        "Hash": {
+          "name": "Hash",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "BankAccountTypes": {
+      "name": "BankAccountTypes",
+      "schema": "",
+      "columns": {
+        "Type": {
+          "name": "Type",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Banks": {
+      "name": "Banks",
+      "schema": "",
+      "columns": {
+        "Bank": {
+          "name": "Bank",
+          "type": "varchar(256)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "FormSessions": {
+      "name": "FormSessions",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "Uid": {
+          "name": "Uid",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "FormId": {
+          "name": "FormId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CurrentStepId": {
+          "name": "CurrentStepId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "StoredValues": {
+          "name": "StoredValues",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "Status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'created'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "UidAndFormIdUniqueIndex": {
+          "name": "UidAndFormIdUniqueIndex",
+          "columns": [
+            "Uid",
+            "FormId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "FormSteps": {
+      "name": "FormSteps",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "FormLabel": {
+          "name": "FormLabel",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "FormId": {
+          "name": "FormId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Template": {
+          "name": "Template",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "NextStepId": {
+          "name": "NextStepId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Action": {
+          "name": "Action",
+          "type": "Action",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'default'"
+        },
+        "Options": {
+          "name": "Options",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'{}'::json"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "FormIdIndex": {
+          "name": "FormIdIndex",
+          "columns": [
+            "FormId"
+          ],
+          "isUnique": false
+        },
+        "NextStepIdIndex": {
+          "name": "NextStepIdIndex",
+          "columns": [
+            "NextStepId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Forms": {
+      "name": "Forms",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "DefaultStartingStepId": {
+          "name": "DefaultStartingStepId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Theme": {
+          "name": "Theme",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "GlobalOptions": {
+          "name": "GlobalOptions",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Genders": {
+      "name": "Genders",
+      "schema": "",
+      "columns": {
+        "Gender": {
+          "name": "Gender",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "IdentityTypes": {
+      "name": "IdentityTypes",
+      "schema": "",
+      "columns": {
+        "IdentityType": {
+          "name": "IdentityType",
+          "type": "varchar(16)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "MaritalStatus": {
+      "name": "MaritalStatus",
+      "schema": "",
+      "columns": {
+        "Status": {
+          "name": "Status",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Members": {
+      "name": "Members",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "IdNumber": {
+          "name": "IdNumber",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "FirstNames": {
+          "name": "FirstNames",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "LastName": {
+          "name": "LastName",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "DateOfBirth": {
+          "name": "DateOfBirth",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "InternalReferenceNumber": {
+          "name": "InternalReferenceNumber",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CardNumber": {
+          "name": "CardNumber",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Status": {
+          "name": "Status",
+          "type": "Status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'created'"
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "InternalReferenceNumberIndex": {
+          "name": "InternalReferenceNumberIndex",
+          "columns": [
+            "InternalReferenceNumber"
+          ],
+          "isUnique": true
+        },
+        "IdNumberIndex": {
+          "name": "IdNumberIndex",
+          "columns": [
+            "IdNumber"
+          ],
+          "isUnique": true
+        },
+        "CardNumberIndex": {
+          "name": "CardNumberIndex",
+          "columns": [
+            "CardNumber"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "ProductSubscriptions": {
+      "name": "ProductSubscriptions",
+      "schema": "",
+      "columns": {
+        "ProductCode": {
+          "name": "ProductCode",
+          "type": "char(8)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "MainMember": {
+          "name": "MainMember",
+          "type": "numeric(10)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Dependant": {
+          "name": "Dependant",
+          "type": "numeric(10)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "ProfileForms": {
+      "name": "ProfileForms",
+      "schema": "",
+      "columns": {
+        "ProfileId": {
+          "name": "ProfileId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "FormId": {
+          "name": "FormId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "ProfileForms_ProfileId_FormId": {
+          "name": "ProfileForms_ProfileId_FormId",
+          "columns": [
+            "ProfileId",
+            "FormId"
+          ]
+        }
+      }
+    },
+    "ProfileTokens": {
+      "name": "ProfileTokens",
+      "schema": "",
+      "columns": {
+        "ProfileId": {
+          "name": "ProfileId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "TokenId": {
+          "name": "TokenId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "ProfileTokens_ProfileId_TokenId": {
+          "name": "ProfileTokens_ProfileId_TokenId",
+          "columns": [
+            "ProfileId",
+            "TokenId"
+          ]
+        }
+      }
+    },
+    "Profiles": {
+      "name": "Profiles",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "Organisation": {
+          "name": "Organisation",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "AuthId": {
+          "name": "AuthId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "AuthIdIndex": {
+          "name": "AuthIdIndex",
+          "columns": [
+            "AuthId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Provinces": {
+      "name": "Provinces",
+      "schema": "",
+      "columns": {
+        "Province": {
+          "name": "Province",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Relationships": {
+      "name": "Relationships",
+      "schema": "",
+      "columns": {
+        "Relation": {
+          "name": "Relation",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "SessionStepData": {
+      "name": "SessionStepData",
+      "schema": "",
+      "columns": {
+        "SessionId": {
+          "name": "SessionId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "StepId": {
+          "name": "StepId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "StoredValues": {
+          "name": "StoredValues",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {
+        "SessionStepData_SessionId_StepId": {
+          "name": "SessionStepData_SessionId_StepId",
+          "columns": [
+            "SessionId",
+            "StepId"
+          ]
+        }
+      }
+    },
+    "Titles": {
+      "name": "Titles",
+      "schema": "",
+      "columns": {
+        "Title": {
+          "name": "Title",
+          "type": "varchar(8)",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "Filter": {
+          "name": "Filter",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Description": {
+          "name": "Description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Tokens": {
+      "name": "Tokens",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "ProfileId": {
+          "name": "ProfileId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Token": {
+          "name": "Token",
+          "type": "json",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Status": {
+          "name": "Status",
+          "type": "Status",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'created'"
+        },
+        "IssuedAt": {
+          "name": "IssuedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "ProfileIdIndex": {
+          "name": "ProfileIdIndex",
+          "columns": [
+            "ProfileId"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  }
+}
