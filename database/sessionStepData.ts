@@ -1,17 +1,17 @@
-import { mysqlTable, timestamp, varchar, json, primaryKey } from 'drizzle-orm/mysql-core'
+import { pgTable, timestamp, varchar, primaryKey, jsonb } from 'drizzle-orm/pg-core'
 
-export const sessionStepData = mysqlTable(
+export const sessionStepData = pgTable(
 	'SessionStepData',
 	{
 		sessionId: varchar('SessionId', { length: 256 }).notNull(),
 		stepId: varchar('StepId', { length: 256 }).notNull(),
 
-		storedValues: json('StoredValues').$type<
+		storedValues: jsonb('StoredValues').$type<
 			Record<string, FormDataEntryValue> | Record<string, FormDataEntryValue>[]
 		>(),
 
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
-		lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
+		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull()
 	},
 	(SessionStepData) => ({
 		sessionId_stepId: primaryKey(SessionStepData.sessionId, SessionStepData.stepId)

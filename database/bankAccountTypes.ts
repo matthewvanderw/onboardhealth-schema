@@ -1,6 +1,6 @@
-import { mysqlTable, text } from 'drizzle-orm/mysql-core'
+import { pgTable, text, varchar } from 'drizzle-orm/pg-core'
 
-export const bankAccountTypes = mysqlTable('BankAccountTypes', {
-	value: text('Type').primaryKey(),
+export const bankAccountTypes = pgTable('BankAccountTypes', {
+	value: varchar('Type').primaryKey(),
 	label: text('Description').notNull()
 })

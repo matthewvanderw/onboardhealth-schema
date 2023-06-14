@@ -5,6 +5,7 @@ export type FormResponse = {
 	next: true | Record<string, string | FormDataEntryValue>
 	form: FormItem[]
 	options?: Options
+	theme?: Theme | null
 }
 
 export type Options = {
@@ -34,5 +35,10 @@ export type GlobalOptions = {
 
 export type Theme = {
 	fontFamily: string
-	fontUrl: string
+	colours: {
+		'custom-primary': string
+		'custom-btn-text': string
+		'custom-icon-danger': string
+		'custom-icon-stroke': string
+	}
 }

@@ -1,11 +1,13 @@
-import { mysqlTable, mysqlEnum, timestamp, varchar } from 'drizzle-orm/mysql-core'
+import { pgTable, pgEnum, timestamp, varchar, uuid } from 'drizzle-orm/pg-core'
 
-export const auth = mysqlTable('Auth', {
-	id: varchar('Id', { length: 256 }).primaryKey().notNull(),
+const typeEnum = pgEnum('Type', ['user', 'programmatic'])
 
-	type: mysqlEnum('Type', ['user', 'programmatic']).default('user').notNull(),
+export const auth = pgTable('Auth', {
+	id: uuid('Id').defaultRandom().primaryKey(),
+
+	type: typeEnum('Type').default('user').notNull(),
 	hash: varchar('Hash', { length: 256 }).notNull(),
 
 	createdAt: timestamp('CreatedAt').defaultNow().notNull(),
-	lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
+	lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull()
 })

@@ -1,23 +1,25 @@
 import type { Options } from '../models/form.model'
 import type { FormItem } from '../models/formItem.model'
-import { mysqlTable, timestamp, varchar, json, index, mysqlEnum } from 'drizzle-orm/mysql-core'
+import { pgTable, timestamp, index, pgEnum, uuid, text, jsonb } from 'drizzle-orm/pg-core'
 
-export const formSteps = mysqlTable(
+const actionEnum = pgEnum('Action', ['default', 'push'])
+
+export const formSteps = pgTable(
 	'FormSteps',
 	{
-		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
+		id: uuid('Id').defaultRandom().primaryKey(),
+		formLabel: text('FormLabel'),
 
-		formId: varchar('FormId', { length: 256 }).notNull(),
-		template: json('Template').$type<FormItem[]>().notNull(),
-		nextStepId: varchar('NextStepId', { length: 256 }).notNull(),
-		action: mysqlEnum('Action', ['default', 'push']).default('default'),
-		options: json('Options').$type<Options>().notNull().default({}),
+		formId: uuid('FormId').notNull(),
+		template: jsonb('Template').$type<FormItem[]>().notNull(),
+		nextStepId: uuid('NextStepId'),
+		action: actionEnum('Action').default('default'),
+		options: jsonb('Options').$type<Options>().notNull().default({}),
 
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
-		lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
+		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull()
 	},
 	(formSteps) => ({
-		formIdIndex: index('FormIdIndex').on(formSteps.formId),
-		nextStepIdIndex: index('NextStepIdIndex').on(formSteps.nextStepId)
+		formIdIndex: index('FormIdIndex').on(formSteps.formId)
 	})
 )

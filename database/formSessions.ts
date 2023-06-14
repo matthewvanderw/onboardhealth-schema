@@ -1,28 +1,21 @@
-import {
-	mysqlTable,
-	timestamp,
-	varchar,
-	json,
-	uniqueIndex,
-	mysqlEnum
-} from 'drizzle-orm/mysql-core'
+import { pgTable, timestamp, varchar, uniqueIndex, pgEnum, uuid, jsonb } from 'drizzle-orm/pg-core'
 
-export const formSessions = mysqlTable(
+const statusEnum = pgEnum('Status', ['created', 'active', 'complete', 'revoked'])
+
+export const formSessions = pgTable(
 	'FormSessions',
 	{
-		id: varchar('Id', { length: 256 }).primaryKey().notNull(),
+		id: uuid('Id').defaultRandom().primaryKey(),
 
 		uid: varchar('Uid', { length: 256 }).notNull(),
 		formId: varchar('FormId', { length: 256 }).notNull(),
-		startingStepId: varchar('StartingStepId', { length: 256 }).notNull(),
+		currentStepId: uuid('CurrentStepId').notNull(),
 
-		storedValues: json('StoredValues').$type<Record<string, string>>(),
+		storedValues: jsonb('StoredValues').$type<Record<string, string>>(),
 
-		status: mysqlEnum('Status', ['created', 'active', 'complete', 'revoked'])
-			.default('created')
-			.notNull(),
+		status: statusEnum('Status').default('created').notNull(),
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
-		lastUpdatedAt: timestamp('LastUpdatedAt').onUpdateNow().notNull()
+		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull()
 	},
 	(formsSessions) => ({
 		uidAndFormIdUniqueIndex: uniqueIndex('UidAndFormIdUniqueIndex').on(

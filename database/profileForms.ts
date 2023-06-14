@@ -1,6 +1,6 @@
-import { mysqlTable, varchar, primaryKey } from 'drizzle-orm/mysql-core'
+import { pgTable, varchar, primaryKey } from 'drizzle-orm/pg-core'
 
-export const profileForms = mysqlTable(
+export const profileForms = pgTable(
 	'ProfileForms',
 	{
 		profileId: varchar('ProfileId', { length: 256 }).notNull(),
