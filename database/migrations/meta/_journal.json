@@ -36,6 +36,13 @@
       "when": 1685661526077,
       "tag": "0004_perpetual_agent_zero",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "5",
+      "when": 1686738872061,
+      "tag": "0005_greedy_mentor",
+      "breakpoints": true
     }
   ]
 }

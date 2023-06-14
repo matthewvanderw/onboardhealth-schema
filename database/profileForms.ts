@@ -1,10 +1,10 @@
-import { pgTable, varchar, primaryKey } from 'drizzle-orm/pg-core'
+import { pgTable, varchar, primaryKey, uuid } from 'drizzle-orm/pg-core'
 
 export const profileForms = pgTable(
 	'ProfileForms',
 	{
-		profileId: varchar('ProfileId', { length: 256 }).notNull(),
-		formId: varchar('FormId', { length: 256 }).notNull()
+		profileId: uuid('ProfileId').notNull(),
+		formId: uuid('FormId').notNull()
 	},
 
 	(profileForms) => ({
