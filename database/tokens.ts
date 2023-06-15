@@ -1,4 +1,4 @@
-import { pgTable, timestamp, varchar, pgEnum, uniqueIndex, uuid, jsonb } from 'drizzle-orm/pg-core'
+import { pgTable, timestamp, varchar, pgEnum, uuid, jsonb, index } from 'drizzle-orm/pg-core'
 
 const statusEnum = pgEnum('Status', ['created', 'active', 'complete', 'revoked'])
 
@@ -13,6 +13,6 @@ export const tokens = pgTable(
 		issuedAt: timestamp('IssuedAt').defaultNow().notNull()
 	},
 	(tokens) => ({
-		profileIdIndex: uniqueIndex('ProfileIdIndex').on(tokens.profileId)
+		profileIdIndex: index('ProfileIdIndex').on(tokens.profileId)
 	})
 )
