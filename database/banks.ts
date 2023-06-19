@@ -1,6 +1,8 @@
-import { pgTable, varchar, text } from 'drizzle-orm/pg-core'
+import { pgTable, varchar, text, integer } from 'drizzle-orm/pg-core'
 
 export const banks = pgTable('Banks', {
 	value: varchar('Bank', { length: 256 }).primaryKey(),
+	branchCode: varchar('BranchCode', { length: 256 }),
+	ranking: integer('Ranking'),
 	label: text('Description').notNull()
 })

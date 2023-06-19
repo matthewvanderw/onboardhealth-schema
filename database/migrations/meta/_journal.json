@@ -43,6 +43,13 @@
       "when": 1686738872061,
       "tag": "0005_greedy_mentor",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1686823675089,
+      "tag": "0006_redundant_secret_warriors",
+      "breakpoints": true
     }
   ]
 }
