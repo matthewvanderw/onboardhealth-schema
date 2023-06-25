@@ -14,7 +14,7 @@ export const transactions = pgTable(
 		id: uuid('Id').defaultRandom().primaryKey(),
 		sessionId: varchar('SessionId', { length: 256 }).notNull(),
 
-		transactionId: varchar('TransactionId', { length: 256 }).notNull(),
+		transactionId: uuid('TransactionId').notNull(),
 		resultCode: integer('ResultCode'),
 		statusCode: integer('StatusCode'),
 
