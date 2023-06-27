@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "9610568a-aae1-4f7e-b834-3852e1220639",
+  "id": "ab7980a3-45d5-42a1-afa7-772649678029",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Auth": {
@@ -78,6 +78,18 @@
           "primaryKey": true,
           "notNull": true
         },
+        "BranchCode": {
+          "name": "BranchCode",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Ranking": {
+          "name": "Ranking",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
         "Description": {
           "name": "Description",
           "type": "text",
@@ -114,13 +126,13 @@
         },
         "CurrentStepId": {
           "name": "CurrentStepId",
-          "type": "varchar(256)",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         },
         "StoredValues": {
           "name": "StoredValues",
-          "type": "json",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -170,6 +182,12 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
+        "FormLabel": {
+          "name": "FormLabel",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "FormId": {
           "name": "FormId",
           "type": "uuid",
@@ -178,7 +196,7 @@
         },
         "Template": {
           "name": "Template",
-          "type": "json",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true
         },
@@ -186,7 +204,7 @@
           "name": "NextStepId",
           "type": "uuid",
           "primaryKey": false,
-          "notNull": true
+          "notNull": false
         },
         "Action": {
           "name": "Action",
@@ -197,10 +215,10 @@
         },
         "Options": {
           "name": "Options",
-          "type": "json",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true,
-          "default": "'{}'::json"
+          "default": "'{}'::jsonb"
         },
         "CreatedAt": {
           "name": "CreatedAt",
@@ -224,13 +242,6 @@
             "FormId"
           ],
           "isUnique": false
-        },
-        "NextStepIdIndex": {
-          "name": "NextStepIdIndex",
-          "columns": [
-            "NextStepId"
-          ],
-          "isUnique": true
         }
       },
       "foreignKeys": {},
@@ -249,19 +260,19 @@
         },
         "DefaultStartingStepId": {
           "name": "DefaultStartingStepId",
-          "type": "varchar(256)",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         },
         "Theme": {
           "name": "Theme",
-          "type": "json",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
         "GlobalOptions": {
           "name": "GlobalOptions",
-          "type": "json",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -358,9 +369,15 @@
           "notNull": true,
           "default": "gen_random_uuid()"
         },
-        "IdNumber": {
-          "name": "IdNumber",
+        "IdentityNumber": {
+          "name": "IdentityNumber",
           "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "IdentityType": {
+          "name": "IdentityType",
+          "type": "IdentityType",
           "primaryKey": false,
           "notNull": true
         },
@@ -384,22 +401,79 @@
         },
         "InternalReferenceNumber": {
           "name": "InternalReferenceNumber",
-          "type": "varchar(256)",
+          "type": "uuid",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "gen_random_uuid()"
         },
         "CardNumber": {
           "name": "CardNumber",
-          "type": "varchar(256)",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },
-        "Status": {
-          "name": "Status",
+        "PremiumAmount": {
+          "name": "PremiumAmount",
+          "type": "numeric(19, 4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ProductType": {
+          "name": "ProductType",
+          "type": "ProductType",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'yourself'"
+        },
+        "ProductName": {
+          "name": "ProductName",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ProductCode": {
+          "name": "ProductCode",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "PolicyStatus": {
+          "name": "PolicyStatus",
           "type": "Status",
           "primaryKey": false,
           "notNull": true,
-          "default": "'created'"
+          "default": "'pending'"
+        },
+        "PolicySuspensionDate": {
+          "name": "PolicySuspensionDate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "PolicyPurchaseDate": {
+          "name": "PolicyPurchaseDate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "BenefitStartDate": {
+          "name": "BenefitStartDate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "BenefitEndDate": {
+          "name": "BenefitEndDate",
+          "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "LastUpdatedAt": {
+          "name": "LastUpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
         },
         "CreatedAt": {
           "name": "CreatedAt",
@@ -417,10 +491,10 @@
           ],
           "isUnique": true
         },
-        "IdNumberIndex": {
-          "name": "IdNumberIndex",
+        "IdentityNumberIndex": {
+          "name": "IdentityNumberIndex",
           "columns": [
-            "IdNumber"
+            "IdentityNumber"
           ],
           "isUnique": true
         },
@@ -468,13 +542,13 @@
       "columns": {
         "ProfileId": {
           "name": "ProfileId",
-          "type": "varchar(256)",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         },
         "FormId": {
           "name": "FormId",
-          "type": "varchar(256)",
+          "type": "uuid",
           "primaryKey": false,
           "notNull": true
         }
@@ -636,7 +710,7 @@
         },
         "StoredValues": {
           "name": "StoredValues",
-          "type": "json",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -713,7 +787,7 @@
         },
         "Token": {
           "name": "Token",
-          "type": "json",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true
         },
@@ -738,7 +812,132 @@
           "columns": [
             "ProfileId"
           ],
-          "isUnique": true
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Transactions": {
+      "name": "Transactions",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "SessionId": {
+          "name": "SessionId",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "TransactionId": {
+          "name": "TransactionId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "PaymentRequestId": {
+          "name": "PaymentRequestId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "ResultCode": {
+          "name": "ResultCode",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "StatusCode": {
+          "name": "StatusCode",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "Amount": {
+          "name": "Amount",
+          "type": "numeric(19, 4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Currency": {
+          "name": "Currency",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'ZAR'"
+        },
+        "PaymentMethod": {
+          "name": "PaymentMethod",
+          "type": "varchar(8)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "PaymentMethodDetail": {
+          "name": "PaymentMethodDetail",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "CheckSum": {
+          "name": "CheckSum",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "User1": {
+          "name": "User1",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "User2": {
+          "name": "User2",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "User3": {
+          "name": "User3",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "TransactionDate": {
+          "name": "TransactionDate",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "UpdatedAt": {
+          "name": "UpdatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "SessionIdIndex": {
+          "name": "SessionIdIndex",
+          "columns": [
+            "SessionId"
+          ],
+          "isUnique": false
+        },
+        "TransactionIdIndex": {
+          "name": "TransactionIdIndex",
+          "columns": [
+            "TransactionId"
+          ],
+          "isUnique": false
         }
       },
       "foreignKeys": {},
