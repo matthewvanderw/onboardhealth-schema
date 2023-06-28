@@ -39,6 +39,8 @@ export const members = pgTable(
 		benefitStartDate: date('BenefitStartDate'),
 		benefitEndDate: date('BenefitEndDate'),
 
+		payorIdentityNumber: varchar('PayorIdentityNumber'),
+
 		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull(),
 		createdAt: timestamp('CreatedAt').defaultNow().notNull()
 	},
