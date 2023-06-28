@@ -65,11 +65,6 @@ CREATE TABLE IF NOT EXISTS "MaritalStatus" (
 	"Description" text NOT NULL
 );
 --> statement-breakpoint
-CREATE TYPE IdentityType AS ENUM ('1', '2');
-CREATE TYPE ProductType AS ENUM ('yourself', 'other');
-CREATE TYPE policyStatus AS ENUM ('pending', 'active', 'suspended', 'revoked');
-
-
 CREATE TABLE IF NOT EXISTS "Members" (
 	"Id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"IdentityNumber" varchar(256) NOT NULL,
@@ -78,7 +73,7 @@ CREATE TABLE IF NOT EXISTS "Members" (
 	"LastName" varchar(256) NOT NULL,
 	"DateOfBirth" date,
 	"InternalReferenceNumber" uuid DEFAULT gen_random_uuid() NOT NULL,
-	"CardNumber" varchar,
+	"CardNumber" integer,
 	"PremiumAmount" numeric(19, 4) NOT NULL,
 	"ProductType" ProductType DEFAULT 'yourself' NOT NULL,
 	"ProductName" varchar NOT NULL,
@@ -88,6 +83,7 @@ CREATE TABLE IF NOT EXISTS "Members" (
 	"PolicyPurchaseDate" date,
 	"BenefitStartDate" date,
 	"BenefitEndDate" date,
+	"PayorIdentityNumber" varchar,
 	"LastUpdatedAt" timestamp DEFAULT now() NOT NULL,
 	"CreatedAt" timestamp DEFAULT now() NOT NULL
 );

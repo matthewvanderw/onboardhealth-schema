@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "ab7980a3-45d5-42a1-afa7-772649678029",
+  "id": "cc874424-a139-4081-8d86-85dbb8daedf6",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Auth": {
@@ -408,7 +408,7 @@
         },
         "CardNumber": {
           "name": "CardNumber",
-          "type": "varchar",
+          "type": "integer",
           "primaryKey": false,
           "notNull": false
         },
@@ -439,7 +439,7 @@
         },
         "PolicyStatus": {
           "name": "PolicyStatus",
-          "type": "Status",
+          "type": "policyStatus",
           "primaryKey": false,
           "notNull": true,
           "default": "'pending'"
@@ -465,6 +465,12 @@
         "BenefitEndDate": {
           "name": "BenefitEndDate",
           "type": "date",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "PayorIdentityNumber": {
+          "name": "PayorIdentityNumber",
+          "type": "varchar",
           "primaryKey": false,
           "notNull": false
         },

@@ -6,7 +6,8 @@ import {
 	uniqueIndex,
 	date,
 	uuid,
-	decimal
+	decimal,
+	integer
 } from 'drizzle-orm/pg-core'
 
 const policyStatusEnum = pgEnum('policyStatus', ['pending', 'active', 'suspended', 'revoked'])
@@ -25,7 +26,7 @@ export const members = pgTable(
 		dateOfBirth: date('DateOfBirth', { mode: 'string' }),
 
 		internalReferenceNumber: uuid('InternalReferenceNumber').defaultRandom().notNull(),
-		cardNumber: varchar('CardNumber'),
+		cardNumber: integer('CardNumber'),
 		premiumAmount: decimal('PremiumAmount', { precision: 19, scale: 4 }).notNull(),
 
 		productType: productTypeEnum('ProductType').default('yourself').notNull(),
