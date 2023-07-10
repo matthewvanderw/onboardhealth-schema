@@ -34,6 +34,7 @@ export type GlobalOptions = {
 }
 
 export type Theme = {
+	borderRadius: string
 	fontFamily: string
 	colours: {
 		'custom-primary': string
