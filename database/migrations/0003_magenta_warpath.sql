@@ -1,1 +1,0 @@
-ALTER TABLE "ValidationCodes" ADD COLUMN "Validated" char(1) DEFAULT 'N' NOT NULL;

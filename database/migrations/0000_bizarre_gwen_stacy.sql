@@ -18,6 +18,12 @@ CREATE TABLE IF NOT EXISTS "Banks" (
 	"Description" text NOT NULL
 );
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "Documents" (
+	"Id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"Label" text NOT NULL,
+	"Document" jsonb NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "FormSessions" (
 	"Id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"Uid" varchar(256) NOT NULL,
@@ -90,6 +96,7 @@ CREATE TABLE IF NOT EXISTS "Members" (
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "ProductSubscriptions" (
 	"ProductCode" char(8) PRIMARY KEY NOT NULL,
+	"ProductName" varchar PRIMARY KEY NOT NULL,
 	"MainMember" numeric(10) NOT NULL,
 	"Dependant" numeric(10) NOT NULL
 );
@@ -137,6 +144,13 @@ CREATE TABLE IF NOT EXISTS "SessionStepData" (
 --> statement-breakpoint
 ALTER TABLE "SessionStepData" ADD CONSTRAINT "SessionStepData_SessionId_StepId" PRIMARY KEY("SessionId","StepId");
 --> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "Signatures" (
+	"Id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"Signature" varchar NOT NULL,
+	"SessionId" uuid NOT NULL,
+	"CreatedAt" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "Titles" (
 	"Title" varchar(8) PRIMARY KEY NOT NULL,
 	"Filter" varchar(8) NOT NULL,
@@ -168,6 +182,16 @@ CREATE TABLE IF NOT EXISTS "Transactions" (
 	"User3" varchar,
 	"TransactionDate" timestamp DEFAULT now() NOT NULL,
 	"UpdatedAt" timestamp DEFAULT now() NOT NULL
+);
+--> statement-breakpoint
+CREATE TABLE IF NOT EXISTS "ValidationCodes" (
+	"Id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"ValidationCode" char(4) NOT NULL,
+	"Validated" char(1) DEFAULT 'N' NOT NULL,
+	"SessionId" uuid NOT NULL,
+	"SentTo" varchar NOT NULL,
+	"Label" varchar NOT NULL,
+	"CreatedAt" timestamp DEFAULT now() NOT NULL
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX IF NOT EXISTS "UidAndFormIdUniqueIndex" ON "FormSessions" ("Uid","FormId");--> statement-breakpoint

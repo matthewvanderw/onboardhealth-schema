@@ -1,1 +1,0 @@
-ALTER TABLE "ValidationCodes" ADD COLUMN "Label" varchar NOT NULL;

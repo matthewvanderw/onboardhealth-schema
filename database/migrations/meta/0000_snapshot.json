@@ -1,7 +1,7 @@
 {
   "version": "5",
   "dialect": "pg",
-  "id": "cc874424-a139-4081-8d86-85dbb8daedf6",
+  "id": "a345386f-8304-4b83-9af1-f15c4f2d6b62",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Auth": {
@@ -93,6 +93,34 @@
         "Description": {
           "name": "Description",
           "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "Documents": {
+      "name": "Documents",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "Label": {
+          "name": "Label",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Document": {
+          "name": "Document",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true
         }
@@ -525,6 +553,12 @@
           "primaryKey": true,
           "notNull": true
         },
+        "ProductName": {
+          "name": "ProductName",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
         "MainMember": {
           "name": "MainMember",
           "type": "numeric(10)",
@@ -747,6 +781,41 @@
         }
       }
     },
+    "Signatures": {
+      "name": "Signatures",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "Signature": {
+          "name": "Signature",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "SessionId": {
+          "name": "SessionId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
     "Titles": {
       "name": "Titles",
       "schema": "",
@@ -946,6 +1015,60 @@
           "isUnique": false
         }
       },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {}
+    },
+    "ValidationCodes": {
+      "name": "ValidationCodes",
+      "schema": "",
+      "columns": {
+        "Id": {
+          "name": "Id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "gen_random_uuid()"
+        },
+        "ValidationCode": {
+          "name": "ValidationCode",
+          "type": "char(4)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Validated": {
+          "name": "Validated",
+          "type": "char(1)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "'N'"
+        },
+        "SessionId": {
+          "name": "SessionId",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "SentTo": {
+          "name": "SentTo",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "Label": {
+          "name": "Label",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "CreatedAt": {
+          "name": "CreatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
       "foreignKeys": {},
       "compositePrimaryKeys": {}
     }
