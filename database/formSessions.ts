@@ -8,7 +8,7 @@ export const formSessions = pgTable(
 		id: uuid('Id').defaultRandom().primaryKey(),
 
 		uid: varchar('Uid', { length: 256 }).notNull(),
-		formId: varchar('FormId', { length: 256 }).notNull(),
+		formId: uuid('FormId').notNull(),
 		currentStepId: uuid('CurrentStepId').notNull(),
 
 		storedValues: jsonb('StoredValues').$type<Record<string, string>>(),
