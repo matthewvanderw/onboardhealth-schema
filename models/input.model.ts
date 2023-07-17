@@ -17,14 +17,14 @@ type Input = {
 	handler?: Handlers
 	validators?: Validators
 	filter?: Filters
+	state?: InputState
 
 	value?: string
 }
 
 type InputState = {
-	touched: boolean
-	// dirty: boolean
-	validity: { valid: true } | { valid: false; message: string }
+	touched?: boolean
+	errorMessage?: string
 }
 
 export type BasicInput = Input & {
@@ -33,7 +33,18 @@ export type BasicInput = Input & {
 
 export type BasicCheckbox = Input & {
 	inputType: 'checkbox'
-	markdown?: string
+	markdown?: {
+		documentId: string
+		data: unknown
+	}
+	otp?: {
+		label: string
+		formStepId: string
+		contactNumberField: string
+		contactNumber: string
+		contactNameField: string
+		contactName: string
+	}
 }
 
 export type BasicSelect = Input & {

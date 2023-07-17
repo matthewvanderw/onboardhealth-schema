@@ -1,4 +1,4 @@
-export type Cards = ContributionCard
+export type Cards = ContributionCard | InfoCard
 
 type Card = {
 	type: 'card'
@@ -17,4 +17,8 @@ export type ContributionCard = Card & {
 		label: string
 		value: number
 	}
+}
+
+export type InfoCard = Card & {
+	cardType: 'info-card'
 }

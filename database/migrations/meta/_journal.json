@@ -8,6 +8,34 @@
       "when": 1687956251834,
       "tag": "0000_demonic_the_hood",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1689151233756,
+      "tag": "0001_outstanding_dragon_lord",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1689548987445,
+      "tag": "0002_regular_skreet",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1689550416320,
+      "tag": "0003_magenta_warpath",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1689551313952,
+      "tag": "0004_furry_black_panther",
+      "breakpoints": true
     }
   ]
 }
