@@ -49,7 +49,6 @@ export const members = pgTable(
 		internalReferenceNumberIndex: uniqueIndex('InternalReferenceNumberIndex').on(
 			members.internalReferenceNumber
 		),
-		identityNumberIndex: uniqueIndex('IdentityNumberIndex').on(members.identityNumber),
-		cardNumberIndex: uniqueIndex('CardNumberIndex').on(members.cardNumber)
+		identityNumberIndex: uniqueIndex('IdentityNumberIndex').on(members.identityNumber)
 	})
 )
