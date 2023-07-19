@@ -10,7 +10,7 @@ import {
 	integer
 } from 'drizzle-orm/pg-core'
 
-const policyStatusEnum = pgEnum('policyStatus', ['pending', 'active', 'suspended', 'revoked'])
+const policyStatusEnum = pgEnum('policyStatus', ['NOT TAKEN UP', 'ACTIVE', 'RESIGNED', 'SUSPENDED'])
 const identityTypeEnum = pgEnum('IdentityType', ['1', '2'])
 const productTypeEnum = pgEnum('ProductType', ['yourself', 'other'])
 
@@ -21,9 +21,9 @@ export const members = pgTable(
 
 		identityNumber: varchar('IdentityNumber', { length: 256 }).notNull(),
 		identityType: identityTypeEnum('IdentityType').notNull(),
-		firstNames: varchar('FirstNames', { length: 256 }).notNull(),
-		lastName: varchar('LastName', { length: 256 }).notNull(),
-		dateOfBirth: date('DateOfBirth', { mode: 'string' }),
+		firstNames: varchar('FirstNames', { length: 256 }),
+		lastName: varchar('LastName', { length: 256 }),
+		dateOfBirth: date('DateOfBirth', { mode: 'string' }).notNull(),
 
 		internalReferenceNumber: uuid('InternalReferenceNumber').defaultRandom().notNull(),
 		cardNumber: integer('CardNumber'),
@@ -33,7 +33,7 @@ export const members = pgTable(
 		productName: varchar('ProductName').notNull(),
 		productCode: varchar('ProductCode').notNull(),
 
-		policyStatus: policyStatusEnum('PolicyStatus').default('pending').notNull(),
+		policyStatus: policyStatusEnum('PolicyStatus'),
 		policySuspensionDate: date('PolicySuspensionDate'),
 		policyPurchaseDate: date('PolicyPurchaseDate'),
 

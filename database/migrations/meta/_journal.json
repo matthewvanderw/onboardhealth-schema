@@ -8,6 +8,20 @@
       "when": 1689567997640,
       "tag": "0000_bizarre_gwen_stacy",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1689766661739,
+      "tag": "0001_lame_ogun",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1689778636073,
+      "tag": "0002_tough_valeria_richards",
+      "breakpoints": true
     }
   ]
 }
