@@ -66,10 +66,12 @@ export type Option = {
 	value: string
 }
 
-export type Validators = {
+export type Validator = {
 	validator: string
 	props: Record<string, string | number>
-}[]
+}
+
+export type Validators = Validator[]
 
 export type Filters = {
 	filter: string
