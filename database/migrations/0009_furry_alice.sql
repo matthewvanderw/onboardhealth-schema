@@ -1,0 +1,1 @@
+ALTER TABLE "Campaigns" ADD COLUMN "FormId" uuid NOT NULL;

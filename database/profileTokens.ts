@@ -1,4 +1,4 @@
-import { pgTable, primaryKey, uuid, varchar } from 'drizzle-orm/pg-core'
+import { pgTable, primaryKey, uuid } from 'drizzle-orm/pg-core'
 
 export const profileTokens = pgTable(
 	'ProfileTokens',

@@ -1,0 +1,1 @@
+ALTER TABLE "CampaignProducts" ALTER COLUMN "CampaignId" SET DATA TYPE uuid;

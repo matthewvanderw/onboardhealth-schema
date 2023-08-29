@@ -1,4 +1,4 @@
-export type Inputs = BasicInput | BasicSelect | BasicCheckbox
+export type Inputs = BasicInput | BasicSelect | DetailedSelect | BasicCheckbox
 
 type Input = {
 	type: 'input'
@@ -49,7 +49,7 @@ export type BasicCheckbox = Input & {
 
 export type BasicSelect = Input & {
 	inputType: 'select'
-	optionsLookup:
+	optionsLookup?:
 		| 'genders'
 		| 'identity-types'
 		| 'martial-statuses'
@@ -58,6 +58,10 @@ export type BasicSelect = Input & {
 		| 'account-types'
 		| 'relationships'
 	options: Option[]
+}
+
+export type DetailedSelect = Input & {
+	inputType: 'detailed-select'
 }
 
 export type Option = {
