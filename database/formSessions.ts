@@ -1,6 +1,6 @@
 import { pgTable, timestamp, varchar, pgEnum, uuid, jsonb } from 'drizzle-orm/pg-core'
 
-const statusEnum = pgEnum('Status', ['created', 'active', 'complete', 'revoked'])
+export const statusEnum = pgEnum('Status', ['active', 'complete', 'revoked', 'linked'])
 
 export const formSessions = pgTable('FormSessions', {
 	id: uuid('Id').defaultRandom().primaryKey(),
@@ -11,7 +11,8 @@ export const formSessions = pgTable('FormSessions', {
 
 	storedValues: jsonb('StoredValues').$type<Record<string, string>>(),
 
-	status: statusEnum('Status').default('created').notNull(),
+	status: statusEnum('Status').default('active').notNull(),
+	reportStatus: varchar('ReportStatus', { length: 256 }),
 	createdAt: timestamp('CreatedAt').defaultNow().notNull(),
 	lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull()
 })

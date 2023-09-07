@@ -15,6 +15,21 @@ export type Options = {
 		next?: { label: string; path: string }
 	}
 	returnProps?: Record<string, string>
+	serverActions?: ServerAction[]
+}
+
+type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail
+
+type UpdateStatus = {
+	status: string
+}
+
+type SmsLinkedSession = {
+	formId: string
+}
+
+type SendEmail = {
+	templateId: string
 }
 
 export type GlobalOptions = {
