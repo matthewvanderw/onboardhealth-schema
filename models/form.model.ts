@@ -18,18 +18,27 @@ export type Options = {
 	serverActions?: ServerAction[]
 }
 
-type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail
+type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail | CreateMember
 
 type UpdateStatus = {
+	actionName: 'updateStatus'
 	status: string
 }
 
 type SmsLinkedSession = {
+	actionName: 'smsLinkedSession'
 	formId: string
 }
 
 type SendEmail = {
+	actionName: 'sendEmail'
 	templateId: string
+	replyTo?: string
+}
+
+type CreateMember = {
+	actionName: 'createMember'
+	dependentStepId?: string
 }
 
 export type GlobalOptions = {

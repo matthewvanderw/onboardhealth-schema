@@ -155,6 +155,34 @@
       "when": 1694116906810,
       "tag": "0021_parched_landau",
       "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "5",
+      "when": 1694513828706,
+      "tag": "0022_certain_boomer",
+      "breakpoints": true
+    },
+    {
+      "idx": 23,
+      "version": "5",
+      "when": 1694527555573,
+      "tag": "0023_regular_killer_shrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "5",
+      "when": 1694555361162,
+      "tag": "0024_odd_gunslinger",
+      "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "5",
+      "when": 1694557290385,
+      "tag": "0025_yielding_dragon_lord",
+      "breakpoints": true
     }
   ]
 }
