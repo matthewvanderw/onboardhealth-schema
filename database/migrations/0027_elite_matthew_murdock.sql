@@ -1,0 +1,1 @@
+ALTER TABLE "ShortCodes" ADD COLUMN "LinkedSessionId" uuid NOT NULL;

@@ -1,4 +1,4 @@
-export type Inputs = BasicInput | BasicSelect | DetailedSelect | BasicCheckbox
+export type Inputs = BasicInput | BasicSelect | DetailedMemberSelect | BasicCheckbox
 
 type Input = {
 	type: 'input'
@@ -60,8 +60,15 @@ export type BasicSelect = Input & {
 	options: Option[]
 }
 
-export type DetailedSelect = Input & {
-	inputType: 'detailed-select'
+export type DetailedMemberSelect = Input & {
+	inputType: 'detailed-member-select'
+	members: {
+		name: string
+		identityNumber: string
+		memberType: 'principal' | 'dependent'
+		detail?: string
+		selected?: boolean
+	}[]
 }
 
 export type Option = {

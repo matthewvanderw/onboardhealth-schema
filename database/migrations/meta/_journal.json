@@ -183,6 +183,20 @@
       "when": 1694557290385,
       "tag": "0025_yielding_dragon_lord",
       "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "5",
+      "when": 1694641180537,
+      "tag": "0026_natural_jasper_sitwell",
+      "breakpoints": true
+    },
+    {
+      "idx": 27,
+      "version": "5",
+      "when": 1694983888372,
+      "tag": "0027_elite_matthew_murdock",
+      "breakpoints": true
     }
   ]
 }

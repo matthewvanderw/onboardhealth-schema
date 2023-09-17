@@ -55,6 +55,8 @@ export type GlobalOptions = {
 			label: string
 		}
 	}
+	principalStepId?: string
+	dependentStepId?: string
 }
 
 export type Theme = {
