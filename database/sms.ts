@@ -1,6 +1,6 @@
 import { pgTable, pgEnum, timestamp, varchar, uuid, integer } from 'drizzle-orm/pg-core'
 
-const statusEnum = pgEnum('SmsStatus', ['queued', 'sent', 'failed'])
+export const statusEnum = pgEnum('SmsStatus', ['queued', 'sent', 'failed'])
 
 export const sms = pgTable('Sms', {
 	id: uuid('Id').defaultRandom().primaryKey(),
