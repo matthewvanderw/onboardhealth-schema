@@ -28,7 +28,7 @@ type InputState = {
 }
 
 export type BasicInput = Input & {
-	inputType: 'text' | 'email' | 'tel' | 'date' | 'password' | 'search' | 'number'
+	inputType: 'text' | 'email' | 'tel' | 'date' | 'password' | 'search' | 'number' | 'radio'
 }
 
 export type BasicCheckbox = Input & {

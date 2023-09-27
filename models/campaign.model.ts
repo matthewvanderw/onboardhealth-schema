@@ -1,0 +1,18 @@
+export type CampaignTemplate = {
+	imageUrl: string
+	header: string
+	subHeader: string
+	cards: {
+		header: string
+		subHeader: string
+		list: {
+			listType: 'ol' | 'ul'
+			items: string[]
+		}
+	}[]
+}
+
+export type CampaignTheme = {
+	primaryColor: string
+	secondaryColor: string
+}

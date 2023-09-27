@@ -211,6 +211,13 @@
       "when": 1695717677075,
       "tag": "0029_spicy_professor_monster",
       "breakpoints": true
+    },
+    {
+      "idx": 30,
+      "version": "5",
+      "when": 1695812789332,
+      "tag": "0030_melted_tusk",
+      "breakpoints": true
     }
   ]
 }
