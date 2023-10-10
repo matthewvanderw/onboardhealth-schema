@@ -9,5 +9,6 @@ export const productSubscriptions = pgTable('ProductSubscriptions', {
 	mainMember65: decimal('MainMember65', { precision: 10 }).notNull(),
 	dependant65: decimal('Dependant65', { precision: 10 }).notNull(),
 	dependantAdult: decimal('DependantAdult', { precision: 10 }).notNull(),
-	dependant: decimal('Dependant', { precision: 10 }).notNull()
+	dependant: decimal('Dependant', { precision: 10 }).notNull(),
+	student: decimal('Student', { precision: 10 }).default('0').notNull()
 })

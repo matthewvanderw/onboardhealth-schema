@@ -58,6 +58,12 @@ export type BasicSelect = Input & {
 		| 'account-types'
 		| 'relationships'
 	options: Option[]
+	updateInputOnChange?: string
+	updateLabelOnValue?: string
+	disclaimerOnValue?: {
+		value: string
+		disclaimer: string
+	}
 }
 
 export type DetailedMemberSelect = Input & {

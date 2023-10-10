@@ -1,0 +1,1 @@
+ALTER TABLE "ProductSubscriptions" ADD COLUMN "Student" numeric(10) DEFAULT 0 NOT NULL;
