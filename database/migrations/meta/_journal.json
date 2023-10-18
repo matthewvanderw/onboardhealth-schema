@@ -225,6 +225,41 @@
       "when": 1696853835121,
       "tag": "0031_robust_russian",
       "breakpoints": true
+    },
+    {
+      "idx": 32,
+      "version": "5",
+      "when": 1697118336473,
+      "tag": "0032_purple_punisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 33,
+      "version": "5",
+      "when": 1697575616490,
+      "tag": "0033_spooky_proemial_gods",
+      "breakpoints": true
+    },
+    {
+      "idx": 34,
+      "version": "5",
+      "when": 1697575688310,
+      "tag": "0034_lively_inhumans",
+      "breakpoints": true
+    },
+    {
+      "idx": 35,
+      "version": "5",
+      "when": 1697626609132,
+      "tag": "0035_dry_black_tarantula",
+      "breakpoints": true
+    },
+    {
+      "idx": 36,
+      "version": "5",
+      "when": 1697626854628,
+      "tag": "0036_colorful_dreadnoughts",
+      "breakpoints": true
     }
   ]
 }

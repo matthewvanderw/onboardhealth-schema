@@ -1,0 +1,1 @@
+ALTER TABLE "ProductSubscriptions" ADD COLUMN "ProductBenefits" json DEFAULT '[]'::json NOT NULL;

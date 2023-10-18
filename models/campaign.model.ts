@@ -15,4 +15,6 @@ export type CampaignTemplate = {
 export type CampaignTheme = {
 	primaryColor: string
 	secondaryColor: string
+	fontFamily: string
+	imageUrl: string
 }

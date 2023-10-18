@@ -1,0 +1,1 @@
+ALTER TABLE "Forms" ADD COLUMN "Label" text DEFAULT '' NOT NULL;
