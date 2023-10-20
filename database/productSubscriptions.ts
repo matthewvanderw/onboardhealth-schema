@@ -6,7 +6,15 @@ export const productSubscriptions = pgTable('ProductSubscriptions', {
 	groupCode: varchar('GroupCode').notNull().default(''),
 	productName: varchar('ProductName').primaryKey(),
 	productDescription: varchar('ProductDescription').notNull().default(''),
-	productBenefits: json('ProductBenefits').notNull().$type<string[]>().default([]),
+	productBenefits: json('ProductBenefits')
+		.notNull()
+		.$type<
+			{
+				label: string
+				available: boolean
+			}[]
+		>()
+		.default([]),
 	mainMember: decimal('MainMember', { precision: 10 }).notNull(),
 	mainMember65: decimal('MainMember65', { precision: 10 }).notNull(),
 	dependant65: decimal('Dependant65', { precision: 10 }).notNull(),

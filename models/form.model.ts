@@ -28,6 +28,7 @@ type UpdateStatus = {
 type SmsLinkedSession = {
 	actionName: 'smsLinkedSession'
 	formId: string
+	templateString: string
 }
 
 type SendEmail = {
