@@ -10,6 +10,7 @@ export type CampaignTemplate = {
 			items: string[]
 		}
 	}[]
+	disclaimer?: string
 }
 
 export type CampaignTheme = {
@@ -19,4 +20,5 @@ export type CampaignTheme = {
 	borderRadius: string
 	fontFamily: string
 	imageUrl: string
+	logoMaxWidth?: string
 }

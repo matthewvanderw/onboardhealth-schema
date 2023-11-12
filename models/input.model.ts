@@ -44,6 +44,7 @@ export type BasicCheckbox = Input & {
 		contactNumber: string
 		contactNameField: string
 		contactName: string
+		templateString: string
 	}
 }
 
