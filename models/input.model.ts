@@ -65,6 +65,18 @@ export type BasicSelect = Input & {
 		value: string
 		disclaimer: string
 	}
+	disabledOnValue?:
+		| {
+				inputName: string
+				type: 'age'
+				minValue: number
+				maxValue: number
+		  }
+		| {
+				inputName: string
+				type: 'value'
+				value: string
+		  }
 }
 
 export type DetailedMemberSelect = Input & {
