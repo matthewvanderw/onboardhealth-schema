@@ -18,7 +18,7 @@ export type Options = {
 	serverActions?: ServerAction[]
 }
 
-type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail | CreateMember
+type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail | CreateMember | sendCustomEmail
 
 type UpdateStatus = {
 	actionName: 'updateStatus'
@@ -40,6 +40,13 @@ type SendEmail = {
 type CreateMember = {
 	actionName: 'createMember'
 	dependentStepId?: string
+}
+
+type sendCustomEmail = {
+	actionName: 'sendCustomEmail'
+	addresses: string[]
+	dependentStepId: string
+	csvValues: { field: string, title: string }[]
 }
 
 export type GlobalOptions = {
