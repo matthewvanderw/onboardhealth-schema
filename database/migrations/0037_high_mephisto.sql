@@ -14,5 +14,5 @@ ALTER TABLE "ProductSubscriptions" ALTER COLUMN "ProductCode" DROP NOT NULL;--> 
     Hope to release this update as soon as possible
 */
 
--- ALTER TABLE "ProductSubscriptions" DROP CONSTRAINT "<constraint_name>";--> statement-breakpoint
+ALTER TABLE "ProductSubscriptions" DROP CONSTRAINT "<constraint_name>";--> statement-breakpoint
 ALTER TABLE "ProductSubscriptions" ADD CONSTRAINT "ProductSubscriptions_ProductCode_GroupCode" PRIMARY KEY("ProductCode","GroupCode");
