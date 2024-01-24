@@ -274,6 +274,13 @@
       "when": 1699907466831,
       "tag": "0038_yellow_tattoo",
       "breakpoints": true
+    },
+    {
+      "idx": 39,
+      "version": "5",
+      "when": 1706088833617,
+      "tag": "0039_romantic_captain_cross",
+      "breakpoints": true
     }
   ]
 }
