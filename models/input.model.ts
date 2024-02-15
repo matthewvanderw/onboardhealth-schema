@@ -51,13 +51,13 @@ export type BasicCheckbox = Input & {
 export type BasicSelect = Input & {
 	inputType: 'select'
 	optionsLookup?:
-		| 'genders'
-		| 'identity-types'
-		| 'martial-statuses'
-		| 'provinces'
-		| 'bank-names'
-		| 'account-types'
-		| 'relationships'
+	| 'genders'
+	| 'identity-types'
+	| 'martial-statuses'
+	| 'provinces'
+	| 'bank-names'
+	| 'account-types'
+	| 'relationships'
 	options: Option[]
 	updateInputOnChange?: string
 	updateLabelOnValue?: string
@@ -66,17 +66,17 @@ export type BasicSelect = Input & {
 		disclaimer: string
 	}
 	disabledOnValue?:
-		| {
-				inputName: string
-				type: 'age'
-				minValue: number
-				maxValue: number
-		  }
-		| {
-				inputName: string
-				type: 'value'
-				value: string
-		  }
+	| {
+		inputName: string
+		type: 'age'
+		minValue: number
+		maxValue: number
+	}
+	| {
+		inputName: string
+		type: 'value'
+		value: string
+	}
 }
 
 export type DetailedMemberSelect = Input & {
@@ -87,7 +87,8 @@ export type DetailedMemberSelect = Input & {
 		memberType: 'principal' | 'dependent'
 		detail?: string
 		selected?: boolean
-	}[]
+	}[],
+	bannedAnswers?: string[]
 }
 
 export type Option = {
