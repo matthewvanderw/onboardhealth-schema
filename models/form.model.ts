@@ -67,6 +67,7 @@ export type GlobalOptions = {
 	}
 	principalStepId?: string
 	dependentStepId?: string
+	posthogPublicKey?: string
 }
 
 export type Theme = {
