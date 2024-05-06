@@ -281,6 +281,20 @@
       "when": 1706088833617,
       "tag": "0039_romantic_captain_cross",
       "breakpoints": true
+    },
+    {
+      "idx": 40,
+      "version": "5",
+      "when": 1709672710298,
+      "tag": "0040_complete_marvel_zombies",
+      "breakpoints": true
+    },
+    {
+      "idx": 41,
+      "version": "5",
+      "when": 1714728072210,
+      "tag": "0041_gray_puppet_master",
+      "breakpoints": true
     }
   ]
 }

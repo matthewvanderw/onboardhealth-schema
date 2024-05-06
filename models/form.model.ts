@@ -9,7 +9,9 @@ export type FormResponse = {
 }
 
 export type Options = {
+	eventName?: string
 	disablePrevious?: boolean
+	disableClose?: boolean
 	action?: {
 		previous?: { label: string; path: string }
 		next?: { label: string; path: string }

@@ -43,7 +43,10 @@ export const members = pgTable(
 		payorIdentityNumber: varchar('PayorIdentityNumber'),
 
 		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull(),
-		createdAt: timestamp('CreatedAt').defaultNow().notNull()
+		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
+
+		sessionId: uuid('SessionId'),
+		refCode: varchar('RefCode', { length: 256 })
 	},
 	(members) => ({
 		internalReferenceNumberIndex: uniqueIndex('InternalReferenceNumberIndex').on(
