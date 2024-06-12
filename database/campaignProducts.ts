@@ -1,4 +1,4 @@
-import { pgTable, varchar, primaryKey } from 'drizzle-orm/pg-core'
+import { pgTable, varchar, primaryKey, text } from 'drizzle-orm/pg-core'
 import { productSubscriptions } from './productSubscriptions'
 import { campaigns } from './campaigns'
 
@@ -14,7 +14,9 @@ export const campaignProducts = pgTable(
 			.default('199'),
 		campaignId: varchar('CampaignId')
 			.notNull()
-			.references(() => campaigns.campaignId)
+			.references(() => campaigns.campaignId),
+		signupConversionLabel: text('SignupConversionLabel'),
+		submitConversionLabel: text('SubmitConversionLabel')
 	},
 	(campaignProducts) => ({
 		campaignProducts: primaryKey(

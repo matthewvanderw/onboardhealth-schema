@@ -295,6 +295,13 @@
       "when": 1714728072210,
       "tag": "0041_gray_puppet_master",
       "breakpoints": true
+    },
+    {
+      "idx": 42,
+      "version": "5",
+      "when": 1718209956717,
+      "tag": "0042_deep_sasquatch",
+      "breakpoints": true
     }
   ]
 }

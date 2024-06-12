@@ -22,3 +22,14 @@ export type CampaignTheme = {
 	imageUrl: string
 	logoMaxWidth?: string
 }
+
+export type CampaignConfig = {
+	facebook?: {
+		trackingId: string
+	},
+	google?: {
+		trackingId: string
+		conversionLabel?: string
+	}
+}
+
