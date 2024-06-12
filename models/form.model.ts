@@ -1,3 +1,4 @@
+import type { CampaignConfig } from './campaign.model'
 import type { FormItem } from './formItem.model'
 
 export type FormResponse = {
@@ -5,7 +6,9 @@ export type FormResponse = {
 	next: true | Record<string, string | FormDataEntryValue>
 	form: FormItem[]
 	options?: Options
-	theme?: Theme | null
+	theme?: Theme | null,
+	conversionLabel?: string
+	trackers?: CampaignConfig
 }
 
 export type Options = {
