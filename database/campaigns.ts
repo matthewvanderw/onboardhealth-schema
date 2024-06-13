@@ -8,7 +8,7 @@ export const campaigns = pgTable(
 		label: text('Label').notNull(),
 		formId: uuid('FormId').notNull(),
 		theme: jsonb('Theme').$type<CampaignTheme>(),
-		config: jsonb('Theme').$type<CampaignConfig>(),
+		config: jsonb('Config').$type<CampaignConfig>(),
 	},
 	(campaigns) => ({
 		campaignIdIndex: uniqueIndex('CampaignIdIndex').on(campaigns.campaignId)
