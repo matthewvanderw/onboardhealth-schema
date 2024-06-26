@@ -13,6 +13,11 @@ type Input = {
 
 	required?: boolean
 	disabled?: boolean
+	hiddenOnValue?:
+	{
+		inputName: string
+		value: string
+	}
 
 	handler?: Handlers
 	validators?: Validators
