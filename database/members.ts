@@ -6,30 +6,32 @@ import {
 	uniqueIndex,
 	date,
 	uuid,
-	decimal,
 	integer
 } from 'drizzle-orm/pg-core'
 
 const policyStatusEnum = pgEnum('policyStatus', ['NOT TAKEN UP', 'ACTIVE', 'RESIGNED', 'SUSPENDED'])
 const identityTypeEnum = pgEnum('IdentityType', ['1', '2'])
-const productTypeEnum = pgEnum('ProductType', ['yourself', 'other'])
+export const productTypeEnum = pgEnum('ProductType', ['YOURSELF', 'OTHER'])
 
 export const members = pgTable(
 	'Members',
 	{
-		id: uuid('Id').defaultRandom().primaryKey(),
+		internalReferenceNumber: uuid('InternalReferenceNumber').defaultRandom().primaryKey(),
+		sessionId: uuid('SessionId'),
+		refCode: varchar('RefCode', { length: 256 }),
 
 		identityNumber: varchar('IdentityNumber', { length: 256 }).notNull(),
 		identityType: identityTypeEnum('IdentityType').notNull(),
 		firstNames: varchar('FirstNames', { length: 256 }),
 		lastName: varchar('LastName', { length: 256 }),
 		dateOfBirth: date('DateOfBirth', { mode: 'string' }).notNull(),
+		email: varchar('Email', { length: 256 }),
+		contactNumber: varchar('ContactNumber', { length: 256 }),
 
-		internalReferenceNumber: uuid('InternalReferenceNumber').defaultRandom().notNull(),
 		cardNumber: integer('CardNumber'),
-		premiumAmount: decimal('PremiumAmount', { precision: 19, scale: 4 }).notNull(),
+		memberNumber: integer('MemberNumber'),
 
-		productType: productTypeEnum('ProductType').default('yourself').notNull(),
+		productType: productTypeEnum('ProductType').default('YOURSELF').notNull(),
 		productName: varchar('ProductName').notNull(),
 		productCode: varchar('ProductCode').notNull(),
 
@@ -45,8 +47,6 @@ export const members = pgTable(
 		lastUpdatedAt: timestamp('LastUpdatedAt').defaultNow().notNull(),
 		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
 
-		sessionId: uuid('SessionId'),
-		refCode: varchar('RefCode', { length: 256 })
 	},
 	(members) => ({
 		internalReferenceNumberIndex: uniqueIndex('InternalReferenceNumberIndex').on(

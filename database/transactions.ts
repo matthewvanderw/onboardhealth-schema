@@ -3,11 +3,16 @@ import {
 	timestamp,
 	varchar,
 	uuid,
-	integer,
 	decimal,
 	index,
-	text
+	text,
+	pgEnum
 } from 'drizzle-orm/pg-core'
+
+export const type = pgEnum('TransactionType', [
+	'UPFRONT',
+	'RECURRING'
+])
 
 export const transactions = pgTable(
 	'Transactions',
@@ -15,11 +20,14 @@ export const transactions = pgTable(
 		id: uuid('Id').defaultRandom().primaryKey(),
 		sessionId: uuid('SessionId').notNull(),
 
-		accessCode: varchar('AccessCode').notNull(),
-		reference: varchar('Reference'),
+		accessCode: varchar('AccessCode'),
+		reference: varchar('Reference').notNull(),
 		transactionId: varchar('TransactionId'),
+		customerCode: varchar('CustomerCode'),
 
 		status: text('Status').default('not-paid'),
+		transactionType: type('TransactionType').default('UPFRONT').notNull(),
+
 		amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),
 		fees: decimal('Fees', { precision: 19, scale: 4 }),
 		currency: varchar('Currency', { length: 8 }).notNull().default('ZAR'),
