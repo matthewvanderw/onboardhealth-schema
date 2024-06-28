@@ -5,33 +5,31 @@ import {
 	uuid,
 	integer,
 	decimal,
-	text,
-	index
+	index,
+	text
 } from 'drizzle-orm/pg-core'
 
 export const transactions = pgTable(
 	'Transactions',
 	{
 		id: uuid('Id').defaultRandom().primaryKey(),
-		sessionId: varchar('SessionId', { length: 256 }).notNull(),
+		sessionId: uuid('SessionId').notNull(),
 
-		transactionId: uuid('TransactionId').defaultRandom().notNull(),
-		paymentRequestId: varchar('PaymentRequestId'),
-		resultCode: integer('ResultCode'),
-		statusCode: integer('StatusCode'),
+		accessCode: varchar('AccessCode').notNull(),
+		reference: varchar('Reference'),
+		transactionId: varchar('TransactionId'),
 
+		status: text('Status').default('not-paid'),
 		amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),
+		fees: decimal('Fees', { precision: 19, scale: 4 }),
 		currency: varchar('Currency', { length: 8 }).notNull().default('ZAR'),
-		paymentMethod: varchar('PaymentMethod', { length: 8 }),
-		paymentMethodDetail: text('PaymentMethodDetail'),
-		checkSum: varchar('CheckSum'),
+		channel: varchar('Channel', { length: 8 }),
 
-		user1: varchar('User1'),
-		user2: varchar('User2'),
-		user3: varchar('User3'),
+		authorizationCode: varchar('AuthorizationCode'),
+		signature: varchar('Signature'),
 
-		transactionDate: timestamp('TransactionDate').defaultNow().notNull(),
-		updatedAt: timestamp('UpdatedAt').defaultNow().notNull()
+		createdAt: timestamp('CreatedAt').defaultNow().notNull(),
+		paidAt: timestamp('PaidAt')
 	},
 	(transactions) => ({
 		sessionIdIndex: index('SessionIdIndex').on(transactions.sessionId),

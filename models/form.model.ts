@@ -19,6 +19,7 @@ export type Options = {
 		previous?: { label: string; path: string }
 		next?: { label: string; path: string }
 	}
+	requirePayment?: boolean
 	returnProps?: Record<string, string>
 	serverActions?: ServerAction[]
 }
