@@ -3,7 +3,8 @@ import {
     varchar,
     uuid,
     pgEnum,
-    integer
+    integer,
+    serial
 } from 'drizzle-orm/pg-core'
 
 export const paymentOption = pgEnum('PaymentOption', [
@@ -14,12 +15,13 @@ export const paymentOption = pgEnum('PaymentOption', [
 export const memberPaymentOption = pgTable(
     'MemberPaymentOption',
     {
-        id: uuid('Id').defaultRandom().primaryKey(),
-        internalReferenceNumber: uuid('InternalReferenceNumber').notNull(),
+        id: serial('Id').primaryKey(),
+        reference: uuid('reference').defaultRandom().notNull(),
+        internalMemberReference: uuid('InternalMemberReference').notNull(),
         email: varchar('Email').notNull(),
 
-        authorizationCode: varchar('AuthorizationCode'),
+        authorizationCode: varchar('AuthorizationCode').default('NA').notNull(),
         paymentOption: paymentOption('PaymentOption').notNull(),
-        strikeDate: integer('StrikeDate')
+        strikeDate: integer('StrikeDate').default(25).notNull()
     }
 )

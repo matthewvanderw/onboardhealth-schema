@@ -1,0 +1,2 @@
+ALTER TABLE "Contributions" RENAME COLUMN "InternalReferenceNumber" TO "PaymentOptionReference";--> statement-breakpoint
+ALTER TABLE "MemberPaymentOption" RENAME COLUMN "InternalReferenceNumber" TO "InternalMemberReference";
