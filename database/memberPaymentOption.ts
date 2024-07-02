@@ -19,6 +19,7 @@ export const memberPaymentOption = pgTable(
         reference: uuid('reference').defaultRandom().notNull(),
         internalMemberReference: uuid('InternalMemberReference').notNull(),
         email: varchar('Email').notNull(),
+        subAccount: varchar('SubAccount'),
 
         authorizationCode: varchar('AuthorizationCode').default('NA').notNull(),
         paymentOption: paymentOption('PaymentOption').notNull(),

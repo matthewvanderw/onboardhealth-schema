@@ -1,0 +1,1 @@
+ALTER TYPE "ContributionStatus" ADD VALUE 'FAILED';

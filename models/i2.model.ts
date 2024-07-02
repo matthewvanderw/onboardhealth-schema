@@ -1,9 +1,16 @@
-export type CreateMember = {
+export type I2CreateMember = {
     uid: string
     sessionId: string
     principalInsured: PrincipalInsured
     payor: Payor
     paymentRequest: PaymentRequest
+}
+
+export type I2CreateMemberRes = {
+    principalInsured: {
+        externalMemberNumber: string
+        memberNumber: string
+    }
 }
 
 export type PrincipalInsured = {
@@ -102,4 +109,36 @@ export type PaymentOptions = {
         authorizationCode: string
         subscriptionSignature: string
     }
+}
+
+export type I2 = {
+    path: string
+    payload: unknown
+    method: 'GET' | 'POST'
+}
+
+export type I2Contribution = {
+    internalMemberNumber: string
+    subscriptionReference: string
+    subscriptionDate: string
+}
+
+export type I2ContributionRes = {
+    invoiceDate: string
+    amount: string
+    reference: string
+    paymentOption: 'SUB' | 'DO'
+    processMessage: string
+}
+
+export type I2ConfirmCollection = {
+    reference: string
+    transactionReference: string
+    paymentId: string
+    status: 'success' | 'failed'
+    amount: string
+    currency?: string
+    channel: 'card'
+    paidAt: Date | null
+    createdAt: Date
 }

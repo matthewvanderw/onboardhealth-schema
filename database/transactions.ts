@@ -18,7 +18,7 @@ export const transactions = pgTable(
 	'Transactions',
 	{
 		id: uuid('Id').defaultRandom().primaryKey(),
-		sessionId: uuid('SessionId').notNull(),
+		sessionId: uuid('SessionId'),
 
 		accessCode: varchar('AccessCode'),
 		reference: varchar('Reference').notNull(),

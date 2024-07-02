@@ -372,6 +372,41 @@
       "when": 1719780505802,
       "tag": "0052_odd_guardsmen",
       "breakpoints": true
+    },
+    {
+      "idx": 53,
+      "version": "5",
+      "when": 1719859802148,
+      "tag": "0053_lucky_mentallo",
+      "breakpoints": true
+    },
+    {
+      "idx": 54,
+      "version": "5",
+      "when": 1719860072129,
+      "tag": "0054_harsh_blue_shield",
+      "breakpoints": true
+    },
+    {
+      "idx": 55,
+      "version": "5",
+      "when": 1719947484830,
+      "tag": "0055_chubby_proemial_gods",
+      "breakpoints": true
+    },
+    {
+      "idx": 56,
+      "version": "5",
+      "when": 1719947652253,
+      "tag": "0056_wooden_flatman",
+      "breakpoints": true
+    },
+    {
+      "idx": 57,
+      "version": "5",
+      "when": 1719947711033,
+      "tag": "0057_shallow_plazm",
+      "breakpoints": true
     }
   ]
 }

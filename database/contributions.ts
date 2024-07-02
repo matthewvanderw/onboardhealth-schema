@@ -3,17 +3,30 @@ import {
     varchar,
     uuid,
     date,
-    decimal
+    decimal,
+    pgEnum,
+    serial
 } from 'drizzle-orm/pg-core'
+
+export const contributionStatus = pgEnum('ContributionStatus', [
+    'CREATED',
+    'PROCESSING',
+    'COMPLETE',
+    'UNSUCCESSFUL',
+    'FAILED'
+])
 
 export const contributions = pgTable(
     'Contributions',
     {
-        id: uuid('Id').defaultRandom().primaryKey(),
+        id: serial('Id').primaryKey(),
         paymentOptionReference: uuid('PaymentOptionReference').notNull(),
 
-        invoiceDate: date('InvoiceDate'),
-        amount: decimal('Amount', { precision: 19, scale: 4 }),
-        reference: varchar('Reference')
+        invoiceDate: date('InvoiceDate').notNull(),
+        collectionDate: date('CollectionDate').notNull(),
+
+        status: contributionStatus('status').notNull().default('CREATED'),
+        amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),
+        reference: varchar('Reference').notNull(),
     }
 )
