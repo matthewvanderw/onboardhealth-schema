@@ -10,7 +10,7 @@ import {
 
 export const contributionStatus = pgEnum('ContributionStatus', [
     'CREATED',
-    'PROCESSING',
+    'CHARGE_ATTEMPTED',
     'COMPLETE',
     'UNSUCCESSFUL',
     'FAILED'
@@ -20,7 +20,7 @@ export const contributions = pgTable(
     'Contributions',
     {
         id: serial('Id').primaryKey(),
-        paymentOptionReference: uuid('PaymentOptionReference').notNull(),
+        subscriptionReference: uuid('SubscriptionReference').notNull(),
 
         invoiceDate: date('InvoiceDate').notNull(),
         collectionDate: date('CollectionDate').notNull(),

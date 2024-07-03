@@ -4,7 +4,6 @@ export type ChargeAuthorization = {
     authorizationCode: string
     reference: string
     subAccount: string | null
-    bearer: 'account' | 'subaccount'
 }
 
 export type ChargeAuthorizationRes = {
@@ -14,6 +13,7 @@ export type ChargeAuthorizationRes = {
         amount: number
         currency: string
         transaction_date: Date
+        status: string
         reference: string
         channel: string
         fees: number
@@ -30,6 +30,9 @@ export type ChargeAuthorizationRes = {
 
 export type Config = {
     path: string
-    method: 'POST' | 'GET'
+    method: 'POST'
     payload: unknown
+} | {
+    path: string
+    method: 'GET'
 }
