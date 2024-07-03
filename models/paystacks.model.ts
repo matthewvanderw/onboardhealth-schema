@@ -13,10 +13,10 @@ export type ChargeAuthorizationRes = {
         amount: number
         currency: string
         transaction_date: Date
-        status: string
+        status: 'success' | 'queued' | 'failed'
         reference: string
         channel: string
-        fees: number
+        fees: number | null
         authorization: {
             authorization_code: string
             signature: string
