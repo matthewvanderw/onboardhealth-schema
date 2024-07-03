@@ -118,7 +118,7 @@ export type I2 = {
 }
 
 export type I2Contribution = {
-    internalMemberNumber: string
+    externalMemberNumber: string
     subscriptionReference: string
     subscriptionDate: string
 }
