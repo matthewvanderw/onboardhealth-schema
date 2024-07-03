@@ -45,7 +45,6 @@ type SendEmail = {
 
 type CreateMember = {
 	actionName: 'createMember'
-	dependentStepId?: string
 }
 
 type sendCustomEmail = {
