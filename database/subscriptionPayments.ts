@@ -7,13 +7,13 @@ import {
     serial
 } from 'drizzle-orm/pg-core'
 
-export const paymentOption = pgEnum('PaymentOption', [
-    'SUB',
-    'DO'
+export const subscriptionStatus = pgEnum('SubscriptionStatus', [
+    'ACTIVE',
+    'INACTIVE'
 ])
 
-export const memberPaymentOption = pgTable(
-    'MemberPaymentOption',
+export const subscriptionPayments = pgTable(
+    'SubscriptionPayments',
     {
         id: serial('Id').primaryKey(),
         reference: uuid('reference').defaultRandom().notNull(),
@@ -22,7 +22,7 @@ export const memberPaymentOption = pgTable(
         subAccount: varchar('SubAccount'),
 
         authorizationCode: varchar('AuthorizationCode').default('NA').notNull(),
-        paymentOption: paymentOption('PaymentOption').notNull(),
+        subscriptionStatus: subscriptionStatus('SubscriptionStatus').notNull(),
         strikeDate: integer('StrikeDate').default(25).notNull()
     }
 )

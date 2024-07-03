@@ -120,15 +120,19 @@ export type I2 = {
 export type I2Contribution = {
     externalMemberNumber: string
     subscriptionReference: string
-    subscriptionDate: string
+    subsDate: string
 }
 
-export type I2ContributionRes = {
+export type I2ContributionResSuccess = {
     invoiceDate: string
     amount: string
     reference: string
     paymentOption: 'SUB' | 'DO'
     processMessage: string
+}
+export type I2ContributionResFail = {
+    name: 'BusinessException'
+    description: string
 }
 
 export type I2ConfirmCollection = {
