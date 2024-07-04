@@ -12,7 +12,9 @@ export type ChargeAuthorizationRes = {
     data: {
         amount: number
         currency: string
-        transaction_date: Date | null
+        created_at: string | null
+        transaction_date: string | null
+        paid_at: string | null
         status: 'success' | 'queued' | 'failed' | 'pending'
         reference: string
         channel: string
