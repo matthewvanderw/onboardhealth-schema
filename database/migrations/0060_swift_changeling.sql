@@ -1,0 +1,1 @@
+ALTER TABLE "Contributions" ADD COLUMN "RemainingCollectionAttempts" integer DEFAULT 4 NOT NULL;
