@@ -435,6 +435,13 @@
       "when": 1720114239726,
       "tag": "0061_overjoyed_karen_page",
       "breakpoints": true
+    },
+    {
+      "idx": 62,
+      "version": "5",
+      "when": 1720121205094,
+      "tag": "0062_common_blizzard",
+      "breakpoints": true
     }
   ]
 }
