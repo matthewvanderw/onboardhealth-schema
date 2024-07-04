@@ -24,7 +24,7 @@ export const contributions = pgTable(
 
         invoiceDate: date('InvoiceDate').notNull(),
         collectionDate: date('CollectionDate').notNull(),
-        remainingCollectionAttempts: integer('RemainingCollectionAttempts').default(4).notNull(),
+        transactionAttempt: integer('TransactionAttempt').default(0).notNull(),
 
         status: contributionStatus('status').notNull().default('CREATED'),
         amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),
