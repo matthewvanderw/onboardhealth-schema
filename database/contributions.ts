@@ -5,8 +5,7 @@ import {
     date,
     decimal,
     pgEnum,
-    serial,
-    integer
+    serial
 } from 'drizzle-orm/pg-core'
 
 export const contributionStatus = pgEnum('ContributionStatus', [
@@ -24,7 +23,6 @@ export const contributions = pgTable(
 
         invoiceDate: date('InvoiceDate').notNull(),
         collectionDate: date('CollectionDate').notNull(),
-        transactionAttempt: integer('TransactionAttempt').default(0).notNull(),
 
         status: contributionStatus('status').notNull().default('CREATED'),
         amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),

@@ -4,7 +4,8 @@ import {
     uuid,
     pgEnum,
     integer,
-    serial
+    serial,
+    date
 } from 'drizzle-orm/pg-core'
 
 export const subscriptionStatus = pgEnum('SubscriptionStatus', [
@@ -18,6 +19,7 @@ export const subscriptionPayments = pgTable(
         id: serial('Id').primaryKey(),
         reference: uuid('reference').defaultRandom().notNull(),
         internalMemberReference: uuid('InternalMemberReference').notNull(),
+        startDate: date('StartDate').notNull(),
         email: varchar('Email').notNull(),
         subAccount: varchar('SubAccount'),
 
