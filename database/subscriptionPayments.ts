@@ -19,12 +19,14 @@ export const subscriptionPayments = pgTable(
         id: serial('Id').primaryKey(),
         reference: uuid('reference').defaultRandom().notNull(),
         internalMemberReference: uuid('InternalMemberReference').notNull(),
-        startDate: date('StartDate').notNull(),
         email: varchar('Email').notNull(),
-        subAccount: varchar('SubAccount'),
 
-        authorizationCode: varchar('AuthorizationCode').default('NA').notNull(),
+        nextRun: date('NextRun').notNull(),
+        strikeDate: integer('StrikeDate').default(25).notNull(),
+        remainingAttempts: integer('RemainingAttempts').default(4).notNull(),
+
+        subAccount: varchar('SubAccount'),
+        authorizationCode: varchar('AuthorizationCode').notNull(),
         subscriptionStatus: subscriptionStatus('SubscriptionStatus').notNull(),
-        strikeDate: integer('StrikeDate').default(25).notNull()
     }
 )

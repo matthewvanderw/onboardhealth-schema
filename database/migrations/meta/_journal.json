@@ -442,6 +442,13 @@
       "when": 1720121205094,
       "tag": "0062_common_blizzard",
       "breakpoints": true
+    },
+    {
+      "idx": 63,
+      "version": "5",
+      "when": 1720458824748,
+      "tag": "0063_workable_ego",
+      "breakpoints": true
     }
   ]
 }

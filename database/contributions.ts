@@ -22,7 +22,6 @@ export const contributions = pgTable(
         subscriptionReference: uuid('SubscriptionReference').notNull(),
 
         invoiceDate: date('InvoiceDate').notNull(),
-        collectionDate: date('CollectionDate').notNull(),
 
         status: contributionStatus('status').notNull().default('CREATED'),
         amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),
