@@ -59,10 +59,12 @@ export type GlobalOptions = {
 		mainMember?: {
 			lookupStepId: string
 			label: string
+			hideAgeLabel?: true
 		}
 		dependants?: {
 			lookupStepId: string
 			label: string
+			hideAgeLabel?: true
 		}
 		total: {
 			label: string
