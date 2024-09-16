@@ -40,8 +40,8 @@ type Scheme = {
 type SchemeHistory = {
     scheme: Scheme;
     membershipNumber: string;
-    startDate: number; // Assuming unixTime returns a number
-    endDate: number;   // Assuming unixTime returns a number
+    startDate: string; // Assuming unixTime returns a number
+    endDate: string;   // Assuming unixTime returns a number
     associationCode: string;
 };
 
@@ -63,7 +63,7 @@ export type Person = {
     middleName: string | null;
     lastName: string;
     gender: string; // Assuming gender is a string
-    dateOfBirth: number; // Assuming unixTime returns a number
+    dateOfBirth: string; // Assuming unixTime returns a number
     language: string;
     ethnicity: string;
     maritalStatus: string;
