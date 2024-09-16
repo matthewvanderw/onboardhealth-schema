@@ -1,4 +1,4 @@
-export type Inputs = BasicInput | BasicSelect | DetailedMemberSelect | BasicCheckbox
+export type Inputs = BasicInput | BasicSelect | DetailedMemberSelect | BasicCheckbox | ConditionSelect
 
 type Input = {
 	type: 'input'
@@ -94,6 +94,17 @@ export type DetailedMemberSelect = Input & {
 		selected?: boolean
 	}[],
 	bannedAnswers?: string[]
+}
+
+export type ConditionSelect = Input & {
+	inputType: 'condition-select'
+	members: {
+		name: string
+		identityNumber: string
+		memberType: 'principal' | 'dependent'
+		conditionCodes?: string[] | 'Yes' | 'No' | 'N/A'
+		selected?: boolean
+	}[],
 }
 
 export type Option = {

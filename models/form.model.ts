@@ -24,7 +24,7 @@ export type Options = {
 	serverActions?: ServerAction[]
 }
 
-type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail | CreateMember | sendCustomEmail
+type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail | CreateMember | SendCustomEmail | CreateMemberGreydom
 
 type UpdateStatus = {
 	actionName: 'updateStatus'
@@ -47,7 +47,11 @@ type CreateMember = {
 	actionName: 'createMember'
 }
 
-type sendCustomEmail = {
+type CreateMemberGreydom = {
+	actionName: 'createMemberGreydom'
+}
+
+type SendCustomEmail = {
 	actionName: 'sendCustomEmail'
 	addresses: string[]
 	dependentStepId: string
