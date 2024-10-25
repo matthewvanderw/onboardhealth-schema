@@ -146,3 +146,25 @@ export type I2ConfirmCollection = {
     paidAt: Date | null
     createdAt: Date
 }
+
+export type I2Eligibility = {
+    identityNumber: string
+    identityType: string
+    dateOfBirth: string
+    schemeCode: string
+    productGroup: string
+}
+
+export type I2EligibilityRes = {
+    eligible: string
+    reasonMsg: string
+    memBenfcEndDate: string
+    memBenfcStartDate: string
+    memCardNum: string
+    memDatePurchased: string
+    memProdName: string
+    memStatus: "NOT TAKEN UP" | "ACTIVE" | "RESIGNED" | "SUSPENDED"
+    memSubsAmt: string
+    memSuspensionDate: string
+    prodCode: string
+}
