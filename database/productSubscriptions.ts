@@ -6,6 +6,7 @@ export const productSubscriptions = pgTable(
 		productCode: char('ProductCode', { length: 8 }).notNull(),
 		schemeCode: varchar('SchemeCode').notNull().default('').notNull(),
 		groupCode: varchar('GroupCode').notNull().default(''),
+		subAccount: varchar('SubAccount'),
 		productName: varchar('ProductName').primaryKey(),
 		productDescription: varchar('ProductDescription').notNull().default(''),
 		productBenefits: json('ProductBenefits')

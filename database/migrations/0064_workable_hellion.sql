@@ -1,0 +1,1 @@
+ALTER TABLE "ProductSubscriptions" ADD COLUMN "SubAccount" varchar;
