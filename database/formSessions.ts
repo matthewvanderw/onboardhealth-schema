@@ -1,6 +1,6 @@
 import { pgTable, timestamp, varchar, pgEnum, uuid, jsonb } from 'drizzle-orm/pg-core'
 
-export const statusEnum = pgEnum('Status', ['active', 'complete', 'revoked', 'linked'])
+export const statusEnum = pgEnum('Status', ['active', 'pending', 'complete', 'revoked', 'linked'])
 
 export const formSessions = pgTable('FormSessions', {
 	id: uuid('Id').defaultRandom().primaryKey(),
