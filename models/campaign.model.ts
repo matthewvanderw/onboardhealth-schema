@@ -16,8 +16,10 @@ export type CampaignTemplate = {
 export type CampaignTheme = {
 	primaryColor: string
 	secondaryColor: string
+	androidPrimaryColor?: string
 	buttonTextColor: string
 	borderRadius: string
+	androidBorderRadius?: string
 	fontFamily: string
 	imageUrl: string
 	logoMaxWidth?: string

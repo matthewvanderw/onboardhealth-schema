@@ -81,9 +81,11 @@ export type GlobalOptions = {
 
 export type Theme = {
 	borderRadius: string
+	androidBorderRadius?: string
 	fontFamily: string
 	colours: {
 		'custom-primary': string
+		'android-custom-primary'?: string
 		'custom-btn-text': string
 		'custom-icon-danger': string
 		'custom-icon-stroke': string
