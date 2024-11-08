@@ -1,6 +1,7 @@
 export type I2CreateMember = {
     uid: string
     sessionId: string
+    brokerId: string
     principalInsured: PrincipalInsured
     payor: Payor
     paymentRequest: PaymentRequest
