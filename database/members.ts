@@ -15,7 +15,7 @@ export const members = pgTable(
 	'Members',
 	{
 		internalReferenceNumber: uuid('InternalReferenceNumber').defaultRandom().primaryKey(),
-		sessionId: uuid('SessionId'),
+		sessionId: uuid('SessionId').notNull(),
 		refCode: varchar('RefCode', { length: 256 }),
 
 		identityNumber: varchar('IdentityNumber', { length: 256 }).notNull(),
