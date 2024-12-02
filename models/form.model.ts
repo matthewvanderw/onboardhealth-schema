@@ -64,11 +64,13 @@ export type GlobalOptions = {
 			lookupStepId: string
 			label: string
 			hideAgeLabel?: true
+			override65?: number
 		}
 		dependants?: {
 			lookupStepId: string
 			label: string
 			hideAgeLabel?: true
+			override65?: number
 		}
 		total: {
 			label: string
