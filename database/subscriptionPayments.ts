@@ -5,7 +5,8 @@ import {
     pgEnum,
     integer,
     serial,
-    date
+    date,
+    uniqueIndex
 } from 'drizzle-orm/pg-core'
 
 export const subscriptionStatus = pgEnum('SubscriptionStatus', [
@@ -23,10 +24,12 @@ export const subscriptionPayments = pgTable(
 
         nextRun: date('NextRun').notNull(),
         strikeDate: integer('StrikeDate').default(25).notNull(),
-        remainingAttempts: integer('RemainingAttempts').default(4).notNull(),
+        remainingAttempts: integer('RemainingAttempts').default(5).notNull(),
 
         subAccount: varchar('SubAccount'),
         authorizationCode: varchar('AuthorizationCode').notNull(),
         subscriptionStatus: subscriptionStatus('SubscriptionStatus').notNull(),
-    }
+    }, (subs) => ({
+        uniqueAuthorizationCode: uniqueIndex("UniqueAuthorizationCodeIndex").on(subs.authorizationCode)
+    })
 )
