@@ -32,6 +32,10 @@ export type CampaignConfig = {
 	google?: {
 		trackingId: string
 		conversionLabel?: string
+	},
+	sms?: {
+		expiredCard?: string
+		failedCollection?: string
 	}
 }
 
