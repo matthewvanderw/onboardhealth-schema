@@ -110,6 +110,8 @@ export type PaymentOptions = {
         authorizationCode: string
         subscriptionSignature: string
     }
+} | {
+    paymentOption: 'D'
 }
 
 export type I2 = {
