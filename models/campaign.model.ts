@@ -11,6 +11,7 @@ export type CampaignTemplate = {
 		}
 	}[]
 	disclaimer?: string
+	groupFilter?: string
 }
 
 export type CampaignTheme = {
