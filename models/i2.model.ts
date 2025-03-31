@@ -111,7 +111,7 @@ export type PaymentOptions = {
         subscriptionSignature: string
     }
 } | {
-    paymentOption: 'D'
+    paymentOption: 'PAYROLL'
 }
 
 export type I2 = {
