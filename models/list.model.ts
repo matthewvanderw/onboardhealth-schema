@@ -16,10 +16,11 @@ export type UserList = List & {
 			}
 		}
 	}
-
+	maxUsers: number
 	listAction: {
 		stepId: string
 		label: string
+		disabled: boolean
 	}
 	results?: Results[]
 }
