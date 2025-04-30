@@ -13,7 +13,8 @@ export const contributionStatus = pgEnum('ContributionStatus', [
     'CHARGE_ATTEMPTED',
     'COMPLETE',
     'FAILED',
-    'EXPIRED'
+    'EXPIRED',
+    'DUPLICATE'
 ])
 
 export const contributions = pgTable(
