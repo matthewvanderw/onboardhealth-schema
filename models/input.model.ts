@@ -1,4 +1,4 @@
-export type Inputs = BasicInput | BasicSelect | DetailedMemberSelect | BasicCheckbox | ConditionSelect
+export type Inputs = BasicInput | BasicSelect | DetailedMemberSelect | BasicCheckbox | ConditionSelect | BasicFile
 
 type Input = {
 	type: 'input'
@@ -33,7 +33,12 @@ type InputState = {
 }
 
 export type BasicInput = Input & {
-	inputType: 'text' | 'email' | 'tel' | 'date' | 'password' | 'search' | 'number' | 'radio' | 'hidden'
+	inputType: 'text' | 'email' | 'tel' | 'date' | 'password' | 'search' | 'number' | 'radio' | 'hidden' | 'file'
+}
+
+export type BasicFile = Input & {
+	inputType: 'file'
+	allowedFileTypes: string[]
 }
 
 export type BasicCheckbox = Input & {
