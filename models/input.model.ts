@@ -68,6 +68,7 @@ export type BasicSelect = Input & {
 	| 'bank-names'
 	| 'account-types'
 	| 'relationships'
+	| 'inception-date'
 	options: Option[]
 	updateInputOnChange?: string
 	updateLabelOnValue?: string
