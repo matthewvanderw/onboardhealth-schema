@@ -15,6 +15,10 @@ export const productSubscriptions = pgTable(
 				{
 					label: string
 					available: boolean
+					special?: {
+						productCode: string
+						label: string
+					}
 				}[]
 			>()
 			.default([]),
