@@ -9,6 +9,7 @@ export type CampaignTemplate = {
 			listType: 'ol' | 'ul'
 			items: string[]
 		}
+		text?: string
 	}[]
 	disclaimer?: string
 	groupFilter?: string

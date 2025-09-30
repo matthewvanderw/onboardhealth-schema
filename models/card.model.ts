@@ -1,9 +1,19 @@
-export type Cards = ContributionCard | InfoCard
+export type Cards = ContributionCard | TermsCard
 
 type Card = {
 	type: 'card'
 	header: string
 	subHeader: string
+}
+
+export type TermsCard = Card & {
+	cardType: 'terms-card'
+	label: string
+	description: string
+	markdown?: {
+		documentId: string
+		data: unknown
+	}
 }
 
 export type ContributionCard = Card & {
@@ -17,8 +27,4 @@ export type ContributionCard = Card & {
 		label: string
 		value: number
 	}
-}
-
-export type InfoCard = Card & {
-	cardType: 'info-card'
 }
