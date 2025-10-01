@@ -1,3 +1,4 @@
+import { sql } from 'drizzle-orm'
 import {
     pgTable,
     varchar,
@@ -5,7 +6,8 @@ import {
     date,
     decimal,
     pgEnum,
-    serial
+    serial,
+    uniqueIndex
 } from 'drizzle-orm/pg-core'
 
 export const contributionStatus = pgEnum('ContributionStatus', [
@@ -28,5 +30,14 @@ export const contributions = pgTable(
         status: contributionStatus('status').notNull().default('CREATED'),
         amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),
         reference: varchar('Reference').notNull(),
-    }
+    },
+    ({ invoiceDate, subscriptionReference, reference }) => ({
+        // one OUTSTANDING row per day
+        uniqOutstandingPerDay: uniqueIndex('uniq_contrib_sub_invoice_outstanding')
+            .on(subscriptionReference, invoiceDate)
+            .where(sql`"status" IN ('CREATED','CHARGE_ATTEMPTED')`),
+
+        // (optional) global reference uniqueness
+        uniqReference: uniqueIndex('uniq_contrib_reference').on(reference),
+    })
 )
