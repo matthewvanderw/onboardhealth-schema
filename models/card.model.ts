@@ -4,6 +4,11 @@ type Card = {
 	type: 'card'
 	header: string
 	subHeader: string
+	hiddenOnValue?:
+	{
+		inputName: string
+		value: string
+	}
 }
 
 export type TermsCard = Card & {
