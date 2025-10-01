@@ -1,4 +1,5 @@
 export type CampaignTemplate = {
+	label: string
 	imageUrl: string
 	header: string
 	subHeader: string
