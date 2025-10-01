@@ -7,7 +7,8 @@ import {
     decimal,
     pgEnum,
     serial,
-    uniqueIndex
+    uniqueIndex,
+    timestamp
 } from 'drizzle-orm/pg-core'
 
 export const contributionStatus = pgEnum('ContributionStatus', [
@@ -30,6 +31,7 @@ export const contributions = pgTable(
         status: contributionStatus('status').notNull().default('CREATED'),
         amount: decimal('Amount', { precision: 19, scale: 4 }).notNull(),
         reference: varchar('Reference').notNull(),
+        createdAt: timestamp('CreatedAt').defaultNow()
     },
     ({ invoiceDate, subscriptionReference, reference }) => ({
         // one OUTSTANDING row per day

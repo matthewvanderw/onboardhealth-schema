@@ -1,0 +1,1 @@
+ALTER TABLE "Contributions" ADD COLUMN "CreatedAt" timestamp DEFAULT now();
