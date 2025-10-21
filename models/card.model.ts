@@ -13,6 +13,7 @@ type Card = {
 
 export type TermsCard = Card & {
 	cardType: 'terms-card'
+	name?: string
 	label: string
 	description: string
 	markdown?: {
