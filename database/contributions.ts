@@ -33,11 +33,10 @@ export const contributions = pgTable(
         reference: varchar('Reference').notNull(),
         createdAt: timestamp('CreatedAt').defaultNow()
     },
-    ({ invoiceDate, subscriptionReference, reference }) => ({
+    ({ invoiceDate, subscriptionReference, reference, status }) => ({
         // one OUTSTANDING row per day
-        uniqOutstandingPerDay: uniqueIndex('uniq_contrib_sub_invoice_outstanding')
-            .on(subscriptionReference, invoiceDate)
-            .where(sql`"status" IN ('CREATED','CHARGE_ATTEMPTED')`),
+        uniqOutstandingPerDay: uniqueIndex('contrib_sub_invoice_status_uniq')
+            .on(subscriptionReference, invoiceDate, status),
 
         // (optional) global reference uniqueness
         uniqReference: uniqueIndex('uniq_contrib_reference').on(reference),
