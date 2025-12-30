@@ -24,7 +24,7 @@ export type Options = {
 	serverActions?: ServerAction[]
 }
 
-type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail | CreateMember | CreateMemberNoTransaction | SendCustomEmail | CreateMemberGreydom
+type ServerAction = UpdateStatus | SmsLinkedSession | SendEmail | CreateMember | CreateMemberNoTransaction | SendCustomEmail | CreateMemberGreydom | EmailUnderwriting
 
 type UpdateStatus = {
 	actionName: 'updateStatus'
@@ -49,6 +49,10 @@ type CreateMember = {
 
 type CreateMemberNoTransaction = {
 	actionName: 'createMemberNoTransaction'
+}
+
+type EmailUnderwriting = {
+	actionName: 'emailUnderwriting'
 }
 
 type CreateMemberGreydom = {
